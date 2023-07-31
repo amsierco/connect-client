@@ -14,11 +14,11 @@ const Login = ({ setToken }) => {
 
         try {
             // API call
-            const token = await axios.post('http://localhost:3000/api/auth/login', { username_email, password })
+            const user_token = await axios.post('http://localhost:3000/api/auth/login', { username_email, password })
             console.log('Token Found! User logged in');
 
             // Update token's state
-            setToken(token.data.token);
+            setToken(user_token.data.token);
 
             // Redirect to homepage
             navigate('/');

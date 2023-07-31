@@ -15,11 +15,11 @@ const Signup = ({ setToken }) => {
 
         try {
             // API call
-            const token = await axios.post('http://localhost:3000/api/auth/signup', { email, username, password })
+            const user_token = await axios.post('http://localhost:3000/api/auth/signup', { email, username, password })
             console.log('Account created!');
 
             // Update token's state
-            setToken(token.data.token);
+            setToken(user_token.data.token);
 
             // Redirect to homepage
             navigate('/');
