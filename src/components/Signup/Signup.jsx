@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const Login = ({ setToken }) => {
-    const [username_email, setUsernameEmail] = useState();
+const Signup = ({ setToken }) => {
+    const [username, setUsername] = useState();
+    const [email, setEmail ] = useState();
     const [password, setPassword] = useState();
 
     const navigate = useNavigate();
 
-    // Form submit for user login
+    // Form submit for user signup
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
             // API call
-            const token = await axios.post('http://localhost:3000/api/auth/login', { username_email, password })
-            console.log('Token Found! User logged in');
+            const token = await axios.post('http://localhost:3000/api/auth/signup', { email, username, password })
+            console.log('Account created!');
 
             // Update token's state
             setToken(token.data.token);
@@ -29,12 +30,16 @@ const Login = ({ setToken }) => {
     }
 
     return(
-        <div className="login-wrapper">
-            <h1>Please Log In</h1>
+        <div className="signup-wrapper">
+            <h1>Signup</h1>
             <form onSubmit={handleSubmit}>
                 <label>
-                    <p>Username or Email</p>
-                    <input type="text" onChange={e => setUsernameEmail(e.target.value)}/>
+                    <p>Email</p>
+                    <input type="text" onChange={e => setEmail(e.target.value)}/>
+                </label>
+                <label>
+                    <p>Username</p>
+                    <input type="text" onChange={e => setUsername(e.target.value)}/>
                 </label>
                 <label>
                     <p>Password</p>
@@ -44,9 +49,8 @@ const Login = ({ setToken }) => {
                     <button type="submit">Submit</button>
                 </div>
             </form>
-            <div>Don't have an account, <Link to='/signup'>Signup today!</Link></div>
       </div>
     )
 }
 
-export default Login;
+export default Signup;
