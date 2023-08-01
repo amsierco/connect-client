@@ -1,7 +1,5 @@
 import React from "react";
 
-// Components
-
 const Comment = ({ content }) => {
     return(
         <div className="comment-wrapper">

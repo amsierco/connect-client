@@ -1,0 +1,9 @@
+.sidebar-wrapper {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar-wrapper li {
+    margin-top: .5rem;
+}

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+// CSS
+import './Post.css';
+
 // Components
 import Comment from "../Comment/Comment";
 
@@ -29,6 +32,7 @@ const Post = ({ content }) => {
     return(<>
          <div className="post-wrapper">
             <div className="post-header">
+                <div>Icon</div>
                 <div>Author: {author}</div>
                 <div>Posted: {content.date}</div>
             </div>

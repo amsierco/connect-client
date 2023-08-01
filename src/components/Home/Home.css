@@ -1,0 +1,6 @@
+.homepage-wrapper {
+    background-color: var(--light-gray);
+    color: var(--text-dark);
+    display: grid;
+    grid-template-columns: .75fr 2fr;
+}

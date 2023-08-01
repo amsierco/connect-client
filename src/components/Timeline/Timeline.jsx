@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+// CSS
+import './Timeline.css';
+
 // Components
 import Post from "../Post/Post";
 
@@ -32,7 +35,6 @@ const Timeline = () => {
     }, []);
 
     return(<>
-        <div>TIMELINE</div>
         <ul className="timeline-wrapper">
             {timeline.map(post => {
                 return (

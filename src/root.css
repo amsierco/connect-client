@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+html,
+body,
+*::before,
+*::after,
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-family: Poppins, 'sans-serf', 'Times New Roman', Times, serif;
+}
+
+body,
+#root {
+    /* Palette */
+    --light-gray: #EFEFEF;
+    --dark-gray: #333333;
+    --text-dark: #29210A;
+    --text-light: #EFEFEF;
+
+    color: var(--dark-gray);
+    background-color: var(--light-gray);
+
+    width: 100vw;
+    height: 100vh;
+}
+
+#root > * {
+    width: 100%;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: var(--dark-gray);
+}
+
+input {
+    all: unset;
+}

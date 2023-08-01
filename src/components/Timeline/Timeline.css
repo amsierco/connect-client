@@ -1,0 +1,12 @@
+.timeline-wrapper {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timeline-wrapper li {
+    width: 80%;
+    border: 1px solid black;
+    margin-top: .5rem;
+}
