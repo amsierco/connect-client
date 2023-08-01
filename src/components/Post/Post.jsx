@@ -3,7 +3,9 @@ import axios from "axios";
 
 // CSS
 import './Post.css';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as heart_solid } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as heart_outline, faComment, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 // Components
 import Comment from "../Comment/Comment";
 
@@ -31,28 +33,37 @@ const Post = ({ content }) => {
 
     return(<>
          <div className="post-wrapper">
+            <div id='post-icon'></div>
+            
             <div className="post-header">
-                <div>Icon</div>
                 <div>Author: {author}</div>
                 <div>Posted: {content.date}</div>
             </div>
+
             <div className="post-content">
                 <div>{content.message}</div>
             </div>
+
             <div className="post-footer">
-                <div>Likes: {content.likes}</div>
+                <div className="post-footer-icons">
+                    <button><FontAwesomeIcon icon={heart_outline} /></button>
+                    <button><FontAwesomeIcon icon={faComment} /></button>
+                    <button><FontAwesomeIcon icon={faPaperPlane} /></button>
+                </div>
+                <div id='like-counter'>{content.likes} Likes</div>
             </div>
-            <div className="post-comment-wrapper">
+
+            {/* <div className="post-comment-wrapper">
                 <ul>
                     {comments.map(comment => {
                         return (
                             <li key={comment._id}>
-                                <Comment content={comment}/>
+                                <Comment content={comment.message}/>
                             </li>
                         );
                     })}
                 </ul>
-            </div>
+            </div> */}
         </div>
     </>)
 }

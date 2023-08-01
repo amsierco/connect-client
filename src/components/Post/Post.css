@@ -1,21 +1,79 @@
 .post-wrapper {
     border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-}
+    display: block;
+    overflow: visible;
+    position: relative;
+    background-color: var(--dark-gray);
+    color: var(--text-light);
+    min-height: fit-content;
+    max-height: 40rem;
+    height: fit-content;
 
-.post-header {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid var(--dark-gray);
-}
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 
-.post-content {
-    margin-bottom: 1rem;
-}
+    --icon-post-size: 5rem;
 
-.post-comment-wrapper {
 
+    > #post-icon {
+        position: absolute;
+        width: var(--icon-post-size);
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        background-color: var(--light-orange);
+        border: 3px solid var(--light-gray);
+        top: 0;
+        left: 0;
+        transform: translate(-25%, -25%);
+    }
+
+    > .post-header {
+        display: flex;
+        gap: 1rem;
+        border-bottom: 1px solid var(--dark-gray);
+        padding-left: var(--icon-post-size);
+        height: calc(var(--icon-post-size) *.75);
+    }
+
+    > .post-content {
+        width: 100%;
+        height: fit-content;
+        padding: 1rem;
+    }
+
+    > .post-footer {
+        padding: 1rem;
+
+        > .post-footer-icons {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1rem;
+            max-height: 2rem;
+            height: 2rem;
+            margin-bottom: 2px;
+
+            > button {
+                color: var(--text-light);
+                background: transparent;
+                border: none;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                
+                > svg {
+                    width: 25px;
+                    height: 25px;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    /* > .post-comment-wrapper {
+
+    } */
 }

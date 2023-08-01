@@ -55,21 +55,21 @@ const Login = ({ setToken }) => {
                         </div>
                     </div>
                     <button className='button-wrapper' type="submit">
-                        <text>Login</text>
+                        <div>Login</div>
                     </button>
 
                     {/* 'Or' Decor */}
                     <div className='or-style'>
-                        <text>or</text>
+                        <div>or</div>
                     </div>
 
                     {/* Facebook/Google */}
                     <div className='external-login'>
-                        <button id='facebook'>Facebook</button>
-                        <button id='google'>Google</button>
+                        <button type='button' id='facebook'>Facebook</button>
+                        <button type='button' id='google'>Google</button>
                     </div>
 
-                    <div>Don't have an account? <Link to='/signup'>Signup</Link></div>
+                    <div>Don't have an account? <Link to='/signup'>Sign up</Link></div>
                     
                 </form>
             </div>
