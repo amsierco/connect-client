@@ -33,31 +33,44 @@ const Login = ({ setToken }) => {
 
     return(
         <div className="login-wrapper">
+            {/* Spacing div */}
+            <div></div>
 
-            <div className='login-decor'>
-                <svg id='ctr-btm'>
-                    <circle cx={200} cy={200} r={100} />
-                </svg>
-                <svg id='ctr-top'>
-                    <circle cx={200} cy={200} r={100} />
-                </svg>
-            </div>
             <div className='login-form-wrapper'>
                 <h1>Connect</h1>    
+
+                {/* Login Form */}
                 <form onSubmit={handleSubmit}>
-                    <h3>Login In</h3>
-                    <label>
-                        <p>Username or Email</p>
-                        <input type="text" onChange={e => setUsernameEmail(e.target.value)}/>
-                    </label>
-                    <label>
-                        <p>Password</p>
-                        <input type="text" onChange={e => setPassword(e.target.value)}/>
-                    </label>
-                    <div>
-                        <button type="submit">Submit</button>
+                    <h3>Welcome Back!</h3>
+                    <div className='input-style-wrapper'>
+                        <div id='label'>Username or Email</div>
+                        <div id='input-inner'>
+                            <input type="text" onChange={e => setUsernameEmail(e.target.value)}/>
+                        </div>
                     </div>
-                    <div>Don't have an account, <Link to='/signup'>Signup today!</Link></div>
+                    <div className='input-style-wrapper'>
+                    <div id='label'>Password</div>
+                        <div id='input-inner'>
+                         <input type="text" onChange={e => setPassword(e.target.value)}/>
+                        </div>
+                    </div>
+                    <button className='button-wrapper' type="submit">
+                        <text>Login</text>
+                    </button>
+
+                    {/* 'Or' Decor */}
+                    <div className='or-style'>
+                        <text>or</text>
+                    </div>
+
+                    {/* Facebook/Google */}
+                    <div className='external-login'>
+                        <button id='facebook'>Facebook</button>
+                        <button id='google'>Google</button>
+                    </div>
+
+                    <div>Don't have an account? <Link to='/signup'>Signup</Link></div>
+                    
                 </form>
             </div>
       </div>

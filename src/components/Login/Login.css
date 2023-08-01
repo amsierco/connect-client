@@ -1,45 +1,23 @@
 .login-wrapper {
-    background-color: var(--light-gray);
-    display: flex;
-    position: relative;
-}
-
-.login-decor {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-
-    & svg {
-        z-index: 3;
-        position: absolute;
-        width: 400px;
-        aspect-ratio: 1/1;
-    }
-
-    & #ctr-btm {
-        bottom: 0;
-        left: 50%;
-        transform: translate(-50%, 50%);
-        fill: var(--light-gray);
-    }
-
-    & #ctr-top {
-        top: 0;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        fill: var(--dark-gray);
-    }
+    background-color: var(--dark-gray);
+    display: grid;
+    grid-template-columns: 1fr 3fr;
 }
 
 .login-form-wrapper {
     position: relative;
-    width: 50%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--dark-gray);
+    background-color: var(--light-gray);
 
-    & h1 {
+    & * {
+        background-color: var(--light-gray);
+        color: var(--text-dark);
+    }
+
+    > h1 {
         position: absolute;
         top: 0;
         left: 50%;
@@ -47,10 +25,7 @@
         font-size: 3rem;
     }
 
-    & * {
-        background-color: var(--dark-gray);
-        color: var(--text-light);
-    }
+    --_width: calc(60%);
 
     > form {
         width: 50%;
@@ -60,34 +35,105 @@
         padding: 1rem;
         align-items: center;
 
-        & h3 {
+        > h3 {
             font-size: 1.5rem;
         }
 
-        & input {
-            background-color: var(--text-light);
-            color: var(--text-dark);
-            border-radius: .25rem;
-            padding-left: 3px;
-            &:hover {
-                cursor: pointer;
+        > .input-style-wrapper {
+            overflow: visible;
+            width: var(--_width);
+            position: relative;
+
+            > #label {
+                position: absolute;
+                z-index: 2;
+                background-color: var(--light-gray);
+                top: 0;
+                left: 0;
+                transform: translate(.75rem, -.75rem);
+                padding-left: .25rem;
+                padding-right: .25rem;
+            }
+
+            > #input-inner {
+                position: relative;
+                overflow: none;
+                width: 100%;
+
+                > input[type='text'] {
+                    background: transparent;
+                    color: var(--text-dark);
+                    border-radius: .25rem;
+                    padding-left: 3px;
+                    padding-top: .65rem;
+                    border: 1px solid var(--dark-gray);
+                    min-width: 100%;
+                }    
             }
         }
 
-        & button {
-            background: transparent;
-            border: none;
-            border: 2px solid var(--text-light);
-            border-radius: .35rem;
-            padding: .35rem;
-        
+        > .button-wrapper, 
+        > .external-login {
+            background: var(--light-orange);
+            color: var(--text-dark);
+            border-radius: .25rem;
+            border: 1px solid var(--dark-gray);
+            width: var(--_width);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: .5rem;
+
             &:hover{
                 cursor: pointer;
+            }
+
+            > text {
+                background: transparent;
+                border: none;
+                font-size: 1rem;
+            }
+        }
+
+        > .external-login {
+            justify-content: space-around;
+            background: transparent;
+            border: none;
+
+            > button {
+                padding: .5rem;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                border-radius: .25rem;
+                border: 1px solid var(--dark-gray);
+                background-color: var(--light-orange);
+                width: 40%;
+
+                &:hover{
+                    cursor: pointer;
+                }
             }
         }
 
         & a {
-            text-decoration: underline;
+            color: var(--light-orange);
+        }
+    
+        > .or-style {
+            width: var(--_width);
+            border-bottom: 1px solid var(--dark-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: visible;
+            position: relative;
+            
+            > text {
+                background-color: var(--light-gray);
+                padding-left: .5rem;
+                padding-right: .5rem;
+                position: absolute;
+            }
         }
     }
 }

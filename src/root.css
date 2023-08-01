@@ -17,6 +17,7 @@ body,
     /* Palette */
     --light-gray: #EFEFEF;
     --dark-gray: #333333;
+    --light-orange: #FF5F1F;
     --text-dark: #29210A;
     --text-light: #EFEFEF;
 
@@ -39,4 +40,5 @@ a {
 
 input {
     all: unset;
+    box-sizing: border-box;
 }
