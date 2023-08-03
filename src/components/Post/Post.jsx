@@ -11,6 +11,7 @@ import Comment from "../Comment/Comment";
 
 const Post = ({ content }) => {
     const [author, setAuthor] = useState(null);
+    const [icon, setIcon] = useState(undefined);
     const [comments, setComments] = useState([]);
 
     // Load API data
@@ -20,6 +21,7 @@ const Post = ({ content }) => {
             try {
                 const author = await axios.get(`http://localhost:3000/api/posts/author/${content.user_id}`);
                 setAuthor(author.data.username);
+                setIcon(author.data.picture);
 
             } catch (err) {
                 console.log(err);
@@ -33,7 +35,15 @@ const Post = ({ content }) => {
 
     return(<>
          <div className="post-wrapper">
-            <div id='post-icon'></div>
+            {
+            undefined !== icon ? 
+
+            <div id='post-icon' style={{backgroundImage: `url(${icon})`}}/> : 
+
+            <div id='post-icon'>
+                <img src='../../guest-32.png' alt='' id="guest"/>
+            </div>
+            }
             
             <div className="post-header">
                 <div>Author: {author}</div>

@@ -44,7 +44,7 @@ const Google = () => {
     return (
       <React.Fragment>
         <button type='button' onClick={handleGoogleLogin} id='google'>
-          <img src='../../../public/google.jpg' />
+          <img src='../../../google.jpg' />
           <div>Google</div>
         </button>
       </React.Fragment>

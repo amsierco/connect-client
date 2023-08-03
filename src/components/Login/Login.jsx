@@ -74,7 +74,7 @@ const Login = () => {
                     {/* Facebook/Google */}
                     <div className='external-login'>
                         <button type='button' id='facebook'>
-                            <img src='../../../public/facebook.jpg' />
+                            <img src='../../../facebook.jpg' />
                             <div>Facebook</div>
                         </button>
                         <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>

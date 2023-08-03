@@ -25,12 +25,23 @@
         top: 0;
         left: 0;
         transform: translate(-25%, -25%);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-size: contain;
+        background-position: center;
+
+        > img#guest {
+            margin-left: 5px;
+            width: 70%;
+        }
     }
 
     > .post-header {
         display: flex;
         gap: 1rem;
-        /* border-bottom: 1px solid var(--dark-gray); */
         padding-left: var(--icon-post-size);
         height: calc(var(--icon-post-size) *.75);
     }
