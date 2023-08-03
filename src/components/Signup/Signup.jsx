@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from '../../utils/axiosConfig';
+import axios from '../../utils/AxiosConfig';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = ({ setToken }) => {

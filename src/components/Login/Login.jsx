@@ -1,5 +1,5 @@
 import React, { useState, createContext, useContext } from 'react';
-import axios from '../../utils/axiosConfig';
+import axios from '../../utils/AxiosConfig';
 import { Link, useNavigate } from 'react-router-dom';
 
 
@@ -24,10 +24,10 @@ const Login = () => {
                 { username_email, password }
             );
             const access_token = response.data.access_token;
-            // const refresh_token = response.data.refresh_token;
+            const refresh_token = response.data.refresh_token;
 
             sessionStorage.setItem('access_token', access_token);
-            // sessionStorage.setItem('refresh_token', refresh_token);
+            sessionStorage.setItem('refresh_token', refresh_token);
 
             // Redirect to homepage
             return navigate('/');

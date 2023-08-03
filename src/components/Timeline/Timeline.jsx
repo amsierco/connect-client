@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "../../utils/axiosConfig";
+
+// Utils
+import axios from "../../utils/AxiosConfig";
 
 // CSS
 import './Timeline.css';
@@ -7,9 +9,6 @@ import './Timeline.css';
 // Components
 import Post from "../Post/Post";
 
-// async function getTimeline(){
-//     return await axios.get('/api/posts');
-// }
 
 const Timeline = () => {
     const [timeline, setTimeline] = useState([]);
