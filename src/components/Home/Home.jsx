@@ -9,6 +9,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import SuggestedUsers from "../SuggestedUsers/SuggestedUsers";
 
 const Home = () => {
+    console.log('HOME CALLED!')
     return(
         <div className="homepage-wrapper">
             <Sidebar />

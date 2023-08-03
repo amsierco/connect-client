@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 // CSS
 import './Login.css';
 
-const Login = ({ setToken }) => {
+const Login = () => {
     const [username_email, setUsernameEmail] = useState();
     const [password, setPassword] = useState();
 
@@ -26,17 +26,11 @@ const Login = ({ setToken }) => {
             const access_token = response.data.access_token;
             // const refresh_token = response.data.refresh_token;
 
-            // console.log('test'); console.log(test);
-            // console.log(access_token);
             sessionStorage.setItem('access_token', access_token);
-            // console.log(sessionStorage.getItem('access_token'));
             // sessionStorage.setItem('refresh_token', refresh_token);
 
-            // Update token's state
-            setToken(access_token);
-
             // Redirect to homepage
-            navigate('/');
+            return navigate('/');
 
         } catch (err) {
             console.log(err);

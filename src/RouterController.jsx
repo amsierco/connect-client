@@ -8,39 +8,31 @@ import Signup from './components/Signup/Signup';
 import Home from './components/Home/Home';
 import axios from './utils/axiosConfig';
 
+// Utils
+import ProtectedRoute from './utils/ProtectedRoute';
+
 const RouterController = () => {
-  // User Auth token
-  const [user_token, setToken] = useState();
-
-  useEffect(() => {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.getItem('access_token')}`;
-  });
-
   return (
     <BrowserRouter basename='/'>
       <Routes>
-        {/* HOME ROUTE */}
-        <Route
-          path='/'
-          element={
-            !user_token ? 
-            <Navigate to='/login' /> :
-            <Home />
+        {/* LOGIN */}
+        <Route path='/login'
+          element={ <Login /> }
+        />
+        {/* SIGNUP */}
+        <Route path='/signup'
+          element={ <Signup /> }
+        />
+        {/* HOME */}
+        <Route path='/'
+          element={ 
+            <ProtectedRoute>
+              <Home /> 
+            </ProtectedRoute>
           }
         />
-        {/* LOGIN ROUTE */}
-        <Route
-          path='/login'
-          element={ <Login setToken={setToken} /> }
-        />
-        {/* SIGNUP ROUTE */}
-        <Route
-          path='/signup'
-          element={ <Signup setToken={setToken} /> }
-        />
-        {/* 404 PAGE ROUTE */}
-        <Route
-          path='*'
+        {/* 404 PAGE */}
+        <Route path='*'
           element={ <ErrorPage /> }
         />
       </Routes>
