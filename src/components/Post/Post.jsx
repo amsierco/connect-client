@@ -37,7 +37,7 @@ const Post = ({ content }) => {
             
             <div className="post-header">
                 <div>Author: {author}</div>
-                <div>Posted: {content.date}</div>
+                <div>Posted: {content.date.toLocaleString().split('T')[0]}</div>
             </div>
 
             <div className="post-content">

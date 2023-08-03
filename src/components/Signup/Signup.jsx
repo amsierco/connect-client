@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from '../../utils/axiosConfig';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = ({ setToken }) => {
@@ -15,7 +15,7 @@ const Signup = ({ setToken }) => {
 
         try {
             // API call
-            const user_token = await axios.post('http://localhost:3000/api/auth/signup', { email, username, password })
+            const user_token = await axios.post('/api/auth/signup', { email, username, password })
             console.log('Account created!');
 
             // Update token's state

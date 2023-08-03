@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../utils/axiosConfig";
 
 // CSS
 import './Timeline.css';
@@ -7,9 +7,9 @@ import './Timeline.css';
 // Components
 import Post from "../Post/Post";
 
-async function getTimeline(){
-    return await axios.get('http://localhost:3000/api/posts');
-}
+// async function getTimeline(){
+//     return await axios.get('/api/posts');
+// }
 
 const Timeline = () => {
     const [timeline, setTimeline] = useState([]);
@@ -19,7 +19,7 @@ const Timeline = () => {
         // API function
         const getTimeline = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/api/posts');
+                const response = await axios.get('/api/posts');
                 const db_timeline = response.data;
                 console.log('Timeline retrieved!');
                 setTimeline(db_timeline);

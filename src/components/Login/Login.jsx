@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, createContext, useContext } from 'react';
+import axios from '../../utils/axiosConfig';
 import { Link, useNavigate } from 'react-router-dom';
+
+
 
 // CSS
 import './Login.css';
@@ -17,7 +19,38 @@ const Login = ({ setToken }) => {
 
         try {
             // API call
-            const user_token = await axios.post('http://localhost:3000/api/auth/login', { username_email, password })
+            const response = await axios.post(
+                '/api/auth/login', 
+                { username_email, password }
+            );
+            const access_token = response.data.access_token;
+            // const refresh_token = response.data.refresh_token;
+
+            // console.log('test'); console.log(test);
+            // console.log(access_token);
+            sessionStorage.setItem('access_token', access_token);
+            // console.log(sessionStorage.getItem('access_token'));
+            // sessionStorage.setItem('refresh_token', refresh_token);
+
+            // Update token's state
+            setToken(access_token);
+
+            // Redirect to homepage
+            navigate('/');
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    // Login with Google
+    const handleGoogleLogin = async (e) => {
+        
+        console.log('Try Google Login');
+
+        try {
+            // API call
+            const user_token = await axios.get('http://localhost:3000/api/auth/google');
             console.log('Token Found! User logged in');
 
             // Update token's state
@@ -66,7 +99,7 @@ const Login = ({ setToken }) => {
                     {/* Facebook/Google */}
                     <div className='external-login'>
                         <button type='button' id='facebook'>Facebook</button>
-                        <button type='button' id='google'>Google</button>
+                        <button type='button' onClick={handleGoogleLogin} id='google'>Google</button>
                     </div>
 
                     <div>Don't have an account? <Link to='/signup'>Sign up</Link></div>
