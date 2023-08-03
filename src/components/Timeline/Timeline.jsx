@@ -9,7 +9,6 @@ import './Timeline.css';
 // Components
 import Post from "../Post/Post";
 
-
 const Timeline = () => {
     const [timeline, setTimeline] = useState([]);
 

@@ -2,7 +2,9 @@ import React, { useState, createContext, useContext } from 'react';
 import axios from '../../utils/AxiosConfig';
 import { Link, useNavigate } from 'react-router-dom';
 
-
+// Utils
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import Google from '../../utils/Google';
 
 // CSS
 import './Login.css';
@@ -31,27 +33,6 @@ const Login = () => {
 
             // Redirect to homepage
             return navigate('/');
-
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
-    // Login with Google
-    const handleGoogleLogin = async (e) => {
-        
-        console.log('Try Google Login');
-
-        try {
-            // API call
-            const user_token = await axios.get('http://localhost:3000/api/auth/google');
-            console.log('Token Found! User logged in');
-
-            // Update token's state
-            setToken(user_token.data.token);
-
-            // Redirect to homepage
-            navigate('/');
 
         } catch (err) {
             console.log(err);
@@ -93,7 +74,9 @@ const Login = () => {
                     {/* Facebook/Google */}
                     <div className='external-login'>
                         <button type='button' id='facebook'>Facebook</button>
-                        <button type='button' onClick={handleGoogleLogin} id='google'>Google</button>
+                        <GoogleOAuthProvider clientId='319542698357-l5fpqgpmbp85oqdn99n9roeda4np4pri.apps.googleusercontent.com'>
+                            <Google />
+                        </GoogleOAuthProvider>
                     </div>
 
                     <div>Don't have an account? <Link to='/signup'>Sign up</Link></div>
