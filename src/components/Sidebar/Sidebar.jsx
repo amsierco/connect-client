@@ -10,11 +10,11 @@ const Sidebar = () => {
             <ul>
                 <li><h1>Connect</h1></li>
                 <li><Link to='/'>Home</Link></li>
-                <li><Link to='/'>Search</Link></li>
-                <li><Link to='/'>Friends</Link></li>
-                <li><Link to='/'>Notifications</Link></li>
-                <li><Link to='/'>Create</Link></li>
-                <li><Link to='/'>Profile</Link></li>
+                <li><Link to='/search'>Search</Link></li>
+                <li><Link to='/friends'>Friends</Link></li>
+                <li><Link to='/notifications'>Notifications</Link></li>
+                <li><Link to='/post-form'>Create</Link></li>
+                <li><Link to='/profile'>Profile</Link></li>
             </ul>
         </div>
     )

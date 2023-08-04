@@ -1,0 +1,24 @@
+.post-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > .post-form-wrapper {
+        border: 1px solid black;
+        padding: 3rem;
+
+        > form {
+
+            & input {
+                border: 1px solid var(--dark-gray);
+                color: var(--text-light);
+                padding: .25rem;
+                color: var(--text-dark);
+            }
+
+            & #image-input {
+                border: none;
+            }
+        }
+    }
+}

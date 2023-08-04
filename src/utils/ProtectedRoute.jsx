@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 import axios from "./AxiosConfig";
 
 const ProtectedRoute = (props) => {
@@ -26,7 +26,6 @@ const ProtectedRoute = (props) => {
         }
 
         // Check if token is valid
-        console.log('axios get')
         axios.get('/api/auth/validate')
         .then ((response) => {
             sessionStorage.setItem('access_token', response.data.access_token);
@@ -45,6 +44,7 @@ const ProtectedRoute = (props) => {
     return (
         <React.Fragment>
             {isLoggedIn ? props.children : null}
+            {/* <Outlet /> */}
         </React.Fragment>
     );
 }

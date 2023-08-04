@@ -8,10 +8,7 @@
     min-height: fit-content;
     max-height: 40rem;
     height: fit-content;
-
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-
+    border-bottom-right-radius: 2rem;
     --icon-post-size: 5rem;
 
 
@@ -43,7 +40,15 @@
         display: flex;
         gap: 1rem;
         padding-left: var(--icon-post-size);
-        height: calc(var(--icon-post-size) *.75);
+        height: calc(var(--icon-post-size) *.65);
+        align-items: center;
+
+        > #small-circle {
+            width: 5px;
+            height: 5px;
+            border-radius: 100%;
+            background-color: var(--text-light);
+        }
     }
 
     > .post-content {

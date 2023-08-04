@@ -8,6 +8,7 @@ import './Timeline.css';
 
 // Components
 import Post from "../Post/Post";
+import SuggestedUsers from "../SuggestedUsers/SuggestedUsers";
 
 const Timeline = () => {
     const [timeline, setTimeline] = useState([]);
@@ -32,17 +33,22 @@ const Timeline = () => {
 
     }, []);
 
-    return(<>
-        <ul className="timeline-wrapper">
-            {timeline.map(post => {
-                return (
-                    <li key={post._id}>
-                        <Post content={post}/>
-                    </li>
-                );
-            })}
-        </ul>
-    </>)
+    return(
+        <React.Fragment>
+            <div className="timeline-container">
+                <ul className="timeline-wrapper">
+                    {timeline.map(post => {
+                        return (
+                            <li key={post._id}>
+                                <Post content={post}/>
+                            </li>
+                        );
+                    })}
+                </ul>
+                <SuggestedUsers />
+            </div>
+        </React.Fragment>
+    )
 }
 
 export default Timeline;

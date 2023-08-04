@@ -1,20 +1,17 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 
 // CSS
 import './Home.css';
 
 // Components
-import Timeline from "../Timeline/Timeline";
 import Sidebar from "../Sidebar/Sidebar";
-import SuggestedUsers from "../SuggestedUsers/SuggestedUsers";
 
 const Home = () => {
-    console.log('HOME CALLED!')
     return(
         <div className="homepage-wrapper">
             <Sidebar />
-            <Timeline />
-            <SuggestedUsers />
+            <Outlet />
         </div>
     )
 }
