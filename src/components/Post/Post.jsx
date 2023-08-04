@@ -14,6 +14,7 @@ const Post = ({ content }) => {
     const [author, setAuthor] = useState(null);
     const [icon, setIcon] = useState(undefined);
     const [isLiked, setLiked] = useState(false);
+    const [likeCount, setLikeCount] = useState(content.likes.count)
 
     // Handle likes
     const handleLike = async() => {
@@ -22,14 +23,17 @@ const Post = ({ content }) => {
 
         // !!! LOGIC TO DETECT IF POST IS ALREADY LIKED !!! //
 
-        // Update database
-        const response = await axios.get(`/api/posts/like/${content.id}`,
+        // Update database with like
+
+        const response = await axios.post(`/api/posts/like/${content._id}`,
             {
                 headers: {
                     'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`
                 }
             }
         );
+        setLikeCount(response.data);
+        console.log('New like amount: ' + response.data);
     }
 
     // Handle comments
@@ -77,7 +81,7 @@ const Post = ({ content }) => {
             </div>
 
             <div className="post-content">
-                {undefined === typeof(content.picture) ? null :
+                {/* {undefined === typeof(content.picture) ? null :
                     // Following DB Schema
                     (() => {
                         try{
@@ -87,7 +91,7 @@ const Post = ({ content }) => {
                             /> 
                         } catch { null } 
                     })()
-                }
+                } */}
                 <div>{content.message}</div>
             </div>
 
@@ -97,7 +101,7 @@ const Post = ({ content }) => {
                     <button><FontAwesomeIcon icon={faComment} onClick={handleComment}/></button>
                     <button><FontAwesomeIcon icon={faPaperPlane} onClick={handleShare}/></button>
                 </div>
-                <div id='like-counter'>{content.likes} Likes</div>
+                <div id='like-counter'>{likeCount} {likeCount === 1 ? 'like' : 'likes'} </div>
             </div>
 
             {/* <div className="post-comment-wrapper">
