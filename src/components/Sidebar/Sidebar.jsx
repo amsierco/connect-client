@@ -1,10 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
+
+// Utils
+import axios from "../../utils/AxiosConfig";
 
 // CSS
 import './Sidebar.css';
 
 const Sidebar = () => {
+    // const[currentUser, setCurrentUser] = useState();
+
+    // const axiosConfig = {
+    //     headers: { 
+    //         'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
+    //         'Refresh_Token': sessionStorage.getItem('refresh_token')
+    //     }
+    // };
+
+    // useEffect(() => {
+    //     // Get user
+    //     const getUser = async () => {
+    //         try {
+    //             const user = await axios.get('/api/profile', axiosConfig);
+    //             setCurrentUser(user.data);
+    //         } catch (err) {
+    //             console.log(err);
+    //         }
+    //     }
+
+    //     getUser();
+
+    // }, []);
+
     return(
         <div className="sidebar-wrapper">
             <ul>
@@ -14,7 +41,7 @@ const Sidebar = () => {
                 <li><Link to='/friends'>Friends</Link></li>
                 <li><Link to='/notifications'>Notifications</Link></li>
                 <li><Link to='/post-form'>Create</Link></li>
-                <li><Link to='/profile'>Profile</Link></li>
+                <li><Link to={`/profile/${sessionStorage.getItem('user')?._id}`}>Profile</Link></li>
             </ul>
         </div>
     )

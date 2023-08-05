@@ -1,9 +1,9 @@
-import React, { useState, createContext, useContext } from 'react';
+import React, { useState } from 'react';
 import axios from '../../utils/AxiosConfig';
 import { Link, useNavigate } from 'react-router-dom';
 
 // Utils
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import Google from '../../utils/Google';
 
 // CSS

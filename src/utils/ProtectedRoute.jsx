@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "./AxiosConfig";
 
 const ProtectedRoute = (props) => {
@@ -13,10 +13,12 @@ const ProtectedRoute = (props) => {
         const token = sessionStorage.getItem('access_token');
         const refresh_token = sessionStorage.getItem('refresh_token');
 
-        axios.defaults.headers.common['Authorization'] = [
-            `Bearer ${sessionStorage.getItem('access_token')}`,
-            `Bearer ${sessionStorage.getItem('refresh_token')}`
-        ];
+        const axiosConfig = {
+            headers: { 
+                'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
+                'Refresh_Token': sessionStorage.getItem('refresh_token')
+            }
+        };
         
         // Check if token exists
         if (!token || token === 'undefined' || !refresh_token || refresh_token === 'undefined') {
@@ -26,9 +28,10 @@ const ProtectedRoute = (props) => {
         }
 
         // Check if token is valid
-        axios.get('/api/auth/validate')
+        axios.get('/api/auth/validate', axiosConfig)
         .then ((response) => {
             sessionStorage.setItem('access_token', response.data.access_token);
+            sessionStorage.setItem('user', response.data.user);
             setIsLoggedIn(true);
         })
         .catch ((err) => {
@@ -37,14 +40,14 @@ const ProtectedRoute = (props) => {
         });
     }
 
+    // Validates user token 
     useEffect(() => {
         checkUserToken();
-    }, [isLoggedIn]);
+    });
 
     return (
         <React.Fragment>
             {isLoggedIn ? props.children : null}
-            {/* <Outlet /> */}
         </React.Fragment>
     );
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../utils/AxiosConfig";
+import { Link } from "react-router-dom";
 
 // CSS
 import './Post.css';
@@ -11,8 +12,7 @@ import { faHeart as heart_outline, faComment, faPaperPlane } from '@fortawesome/
 import Comment from "../Comment/Comment";
 
 const Post = ({ content }) => {
-    const [author, setAuthor] = useState(null);
-    const [icon, setIcon] = useState(undefined);
+    const [author, setAuthor] = useState();
     const [isLiked, setLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(content.likes.count)
 
@@ -21,10 +21,7 @@ const Post = ({ content }) => {
         // Change heart UI
         setLiked(!isLiked);
 
-        // !!! LOGIC TO DETECT IF POST IS ALREADY LIKED !!! //
-
-        // Update database with like
-
+        // Update database with like status
         const response = await axios.post(`/api/posts/like/${content._id}`,
             {
                 headers: {
@@ -32,8 +29,8 @@ const Post = ({ content }) => {
                 }
             }
         );
+        // Rerenders post component
         setLikeCount(response.data);
-        console.log('New like amount: ' + response.data);
     }
 
     // Handle comments
@@ -52,30 +49,47 @@ const Post = ({ content }) => {
         const getAuthor = async () => {
             try {
                 const author = await axios.get(`/api/posts/author/${content.user_id}`);
-                setAuthor(author.data.username);
-                setIcon(author.data.picture);
+                setAuthor(author.data);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+        // Check like status
+        const getLikeStatus = async () => {
+            try {
+                const like_status = await axios.get(`/api/posts/like/${content._id}`,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`
+                        }
+                    }
+                );  
+                setLiked(like_status.data);
+
             } catch (err) {
                 console.log(err);
             }
         }
         
-        // Call API function
+        // Call API functions
         getAuthor();
+        getLikeStatus();
 
     }, []);
 
     return(<>
          <div className="post-wrapper">
             {
-            undefined !== icon ? 
-            <div id='post-icon' style={{backgroundImage: `url(${icon})`}}/> : 
-            <div id='post-icon'>
+            undefined !== author?.picture ? 
+            <Link to={`/profile/${author?._id}`} id='post-icon' style={{backgroundImage: `url(${author?.picture})`}}/> : 
+            <Link to={`/profile/${author?._id}`} id='post-icon'>
                 <img src='../../guest-32.png' alt='' id="guest"/>
-            </div>
+            </Link>
             }
             
             <div className="post-header">
-                <div>{author}</div>
+                <div>{author?.username}</div>
                 <div id='small-circle'></div>
                 <div>{content.date.toLocaleString().split('T')[0]}</div>
             </div>

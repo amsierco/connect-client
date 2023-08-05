@@ -21,27 +21,18 @@ const RouterController = () => {
     <BrowserRouter basename='/'>
       <Routes>
         {/* LOGIN */}
-        <Route path='/login'
-          element={ <Login /> }
-        />
+        <Route path='/login' element={ <Login /> } />
         {/* SIGNUP */}
-        <Route path='/signup'
-          element={ <Signup /> }
-        />
+        <Route path='/signup' element={ <Signup /> } />
 
         {/* HOME */}
-        <Route path='/'
-          element={ 
-            <ProtectedRoute>
-              <Home /> 
-            </ProtectedRoute>
-          }>
+        <Route path='/' element={ <ProtectedRoute><Home /></ProtectedRoute> }>
           {/* TIMELINE */}
           <Route path='' element={ <Timeline /> }/>
           {/* POST FORM */}
           <Route path='post-form' element={ <PostForm /> } />
           {/* PROFILE */}
-          <Route path='profile' element={ <Profile /> } />
+          <Route path='profile/:id' element={ <Profile /> } />
           {/* FRIENDS */}
           <Route path='friends' element={ <Friends /> } />
           {/* NOTIFICATIONS */}
