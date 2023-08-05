@@ -5,31 +5,43 @@
     padding: 2rem;
 
     > * {
-        width: 100%;
-        border: 1px solid black;
+        /* width: 100%;
+        border: 1px solid black; */
     }
 
-    > .info {
+   > .header {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
 
-        display: flex;
-        gap: 2rem;
+        > .info {
+            display: grid;
+            grid-template-columns: 1fr 5fr;
 
-        > #icon {
-            width: 10%;
-            aspect-ratio: 1/1;
-            background-color: var(--light-orange);
-            border-radius: 100%;
+            > #icon-wrapper {
+
+                > #icon {
+                    aspect-ratio: 1/1;
+                    background-color: var(--light-orange);
+                    border-radius: 100%;
+                    background-size: cover;
+                    background-position: center;
+                }
+            }
+
+            > #details {
+                padding-left: 2rem;
+                display: flex;
+                gap: 1rem;
+                font-size: 2rem;
+                align-items: center;
+            }
         }
 
-        > #details {
-            width: 100%;
-            border: 1px solid black;
+        > .actions {
             display: flex;
-            gap: 1rem;
-            font-size: 2rem;
             align-items: center;
         }
-    }
+   }
 
     > .friend-slider {
         background-color: var(--dark-gray);

@@ -31,7 +31,7 @@ const ProtectedRoute = (props) => {
         axios.get('/api/auth/validate', axiosConfig)
         .then ((response) => {
             sessionStorage.setItem('access_token', response.data.access_token);
-            sessionStorage.setItem('user', response.data.user);
+            sessionStorage.setItem('user', JSON.stringify(response.data.user));
             setIsLoggedIn(true);
         })
         .catch ((err) => {
@@ -42,6 +42,7 @@ const ProtectedRoute = (props) => {
 
     // Validates user token 
     useEffect(() => {
+        console.log('Validating Token')
         checkUserToken();
     });
 

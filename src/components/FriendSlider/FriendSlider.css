@@ -1,0 +1,10 @@
+.friend-slider-wrapper {
+    width: 100%;
+    border: 2px solid red;
+    height: 150px;
+
+    > .scroll-menu {
+        border: 2px solid blue;
+        height: 100%;
+    }
+}

@@ -8,7 +8,7 @@ import axios from "../../utils/AxiosConfig";
 import './Sidebar.css';
 
 const Sidebar = () => {
-    // const[currentUser, setCurrentUser] = useState();
+    const[userId, setUserId] = useState();
 
     // const axiosConfig = {
     //     headers: { 
@@ -32,6 +32,11 @@ const Sidebar = () => {
 
     // }, []);
 
+    useEffect(() => {
+        setUserId(JSON.parse(sessionStorage.getItem('user'))._id);
+    }, []);
+
+
     return(
         <div className="sidebar-wrapper">
             <ul>
@@ -41,7 +46,7 @@ const Sidebar = () => {
                 <li><Link to='/friends'>Friends</Link></li>
                 <li><Link to='/notifications'>Notifications</Link></li>
                 <li><Link to='/post-form'>Create</Link></li>
-                <li><Link to={`/profile/${sessionStorage.getItem('user')?._id}`}>Profile</Link></li>
+                <li><Link to={`/profile/${userId}`}>Profile</Link></li>
             </ul>
         </div>
     )
