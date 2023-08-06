@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // Utils
 import axios from "../../utils/AxiosConfig";
@@ -10,6 +10,8 @@ import './Sidebar.css';
 const Sidebar = () => {
     const[userId, setUserId] = useState();
 
+    const navigate = useNavigate();
+
     // const axiosConfig = {
     //     headers: { 
     //         'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
@@ -17,20 +19,11 @@ const Sidebar = () => {
     //     }
     // };
 
-    // useEffect(() => {
-    //     // Get user
-    //     const getUser = async () => {
-    //         try {
-    //             const user = await axios.get('/api/profile', axiosConfig);
-    //             setCurrentUser(user.data);
-    //         } catch (err) {
-    //             console.log(err);
-    //         }
-    //     }
-
-    //     getUser();
-
-    // }, []);
+    const handleClick = () => {
+        sessionStorage.setItem('access_token', undefined);
+        sessionStorage.setItem('refresh_token', undefined);
+        navigate('/login');
+    }
 
     useEffect(() => {
         setUserId(JSON.parse(sessionStorage.getItem('user'))._id);
@@ -47,6 +40,7 @@ const Sidebar = () => {
                 <li><Link to='/notifications'>Notifications</Link></li>
                 <li><Link to='/post-form'>Create</Link></li>
                 <li><Link to={`/profile/${userId}`}>Profile</Link></li>
+                <li><button onClick={handleClick}>Logout</button></li>
             </ul>
         </div>
     )

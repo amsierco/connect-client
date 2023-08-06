@@ -12,6 +12,13 @@ const PostForm = () => {
 
     const [message, setMessage] = useState();
 
+    const axiosConfig = {
+        headers: { 
+            'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
+            'Refresh_Token': sessionStorage.getItem('refresh_token')
+        }
+    };
+
     const handleSubmit = async(e) => {
         e.preventDefault();
 
@@ -20,11 +27,7 @@ const PostForm = () => {
             const response = await axios.post(
                 '/api/posts/create', 
                 { message },
-                {
-                    headers: {
-                        'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`
-                    }
-                }
+                axiosConfig
             );
 
             // Redirect to homepage

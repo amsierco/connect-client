@@ -20,7 +20,7 @@ const Timeline = () => {
             try {
                 const response = await axios.get('/api/posts');
                 const db_timeline = response.data;
-                console.log('Timeline retrieved!');
+                // console.log('Timeline retrieved!');
                 setTimeline(db_timeline);
 
             } catch (err) {

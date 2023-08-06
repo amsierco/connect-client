@@ -16,19 +16,21 @@ const Post = ({ content }) => {
     const [isLiked, setLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(content.likes.count)
 
+    const axiosConfig = {
+        headers: { 
+            'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
+            'Refresh_Token': sessionStorage.getItem('refresh_token')
+        }
+    };
+
     // Handle likes
     const handleLike = async() => {
         // Change heart UI
         setLiked(!isLiked);
 
         // Update database with like status
-        const response = await axios.post(`/api/posts/like/${content._id}`,
-            {
-                headers: {
-                    'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`
-                }
-            }
-        );
+        const response = await axios.post(`/api/posts/like/${content._id}`, {}, axiosConfig);
+
         // Rerenders post component
         setLikeCount(response.data);
     }
@@ -58,13 +60,7 @@ const Post = ({ content }) => {
         // Check like status
         const getLikeStatus = async () => {
             try {
-                const like_status = await axios.get(`/api/posts/like/${content._id}`,
-                    {
-                        headers: {
-                            'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`
-                        }
-                    }
-                );  
+                const like_status = await axios.get(`/api/posts/like/${content._id}`, axiosConfig);
                 setLiked(like_status.data);
 
             } catch (err) {

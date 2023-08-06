@@ -17,7 +17,7 @@
         width: var(--icon-post-size);
         aspect-ratio: 1/1;
         border-radius: 50%;
-        background-color: var(--light-orange);
+        background: radial-gradient(circle, var(--light-gray) 65%, var(--light-orange) 5%);
         border: 3px solid var(--light-gray);
         top: 0;
         left: 0;

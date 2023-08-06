@@ -11,9 +11,7 @@ import "./FriendSlider.css";
 import FriendPreview from "../FriendPreview/FriendPreview";
 
 const FriendSlider = ({ userId }) => {
-
     const[loading, setLoadingState] = useState(true);
-
     const[friends, setFriends] = useState();
 
     const axiosConfig = {
@@ -25,14 +23,12 @@ const FriendSlider = ({ userId }) => {
 
     useEffect(() => {
         // Get friends
-        console.log('FRIEND ID: '+userId)
+
         // API function
         const api = async () => {
             try {
                 const response = await  axios.get(`/api/profile/${userId}/friends`, axiosConfig);
-                console.log('Friends Retrieved');
-                await setFriends(response.data);
-                console.log(friends)
+                setFriends(response.data);
                 setLoadingState(false);
             } catch (err) {
                 console.log(err);
@@ -41,19 +37,7 @@ const FriendSlider = ({ userId }) => {
             }
         }
         // Call API function
-       api();
-        // axios.get(`/api/profile/${userId}/friends`, axiosConfig)
-        // .then ((response) => {
-        //     setFriends(response.data);
-        //     console.log(friends);
-        //     // console.log('F2: ' + typeof(response.data))
-        //     setLoadingState(false);
-        // })
-        // .then (() => {
-        //     console.log(friends);
-        //     setLoadingState(false);
-        // })
-        // console.log(friends)
+        api();
 
     }, [])
 
@@ -63,12 +47,8 @@ const FriendSlider = ({ userId }) => {
             <ul className="scroll-menu">
                 {friends.map(friend => {
                             return (
-                                <li key={friend._id}>
-                                    <FriendPreview 
-                                        picture={friend.picture}
-                                        username={friend.username}
-                                        friend_status={true}
-                                    />
+                                <li key={friend}>
+                                    <FriendPreview userId={friend} />
                                 </li>
                             );
                         })}

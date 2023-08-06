@@ -8,18 +8,19 @@ import Loading from "../../utils/Loading";
 // Components
 import FriendSlider from "../FriendSlider/FriendSlider";
 import FriendRequestBtn from "../FriendRequestBtn/FriendRequestBtn";
+import ProfilePost from "../ProfilePost/ProfilePost";
 
 // CSS
 import './Profile.css';
 
 const Profile = () => {
-
     const[loading, setLoadingState] = useState(true);
 
     const[user, setUser] = useState();
     const[picture, setPicture] = useState();
     const[username, setUsername] = useState();
     const[userId, setUserId] = useState();
+    const[posts, setPosts] = useState([]);
 
     const { id } = useParams();
 
@@ -31,6 +32,8 @@ const Profile = () => {
     };
 
     useEffect(() => {
+        setLoadingState(true);
+
         // Get profile
         axios.get(`/api/profile/${id}`, axiosConfig)
         .then ((response) => {
@@ -38,12 +41,12 @@ const Profile = () => {
             setUsername(response.data.username);
             setPicture(response.data.picture);
             setUserId(response.data._id);
-            console.log('ID: '+userId);
-            console.log('ID2: ' + response.data._id);
+            // console.log(response.data.posts)
+            setPosts(response.data.posts);
             setLoadingState(false);
         })
        
-    }, [])
+    }, [id])
 
     return (
         loading === true ? <Loading /> : 
@@ -66,11 +69,19 @@ const Profile = () => {
                 </div>
             </div>
             <div className="friend-slider">
-                Friend Slider
-                { /*userId &&*/ <FriendSlider userId={userId}/> }
+                <FriendSlider userId={userId}/>
             </div>
-            <div className="all-posts">
+            <div className="all-posts-wrapper">
                 All Posts
+                <ul className="all-posts">
+                    {posts.map(postId => {
+                        return (
+                            <li key={postId}>
+                                <ProfilePost postId={postId}/>
+                            </li>
+                        );
+                    })}
+                </ul>
             </div>
         </div>
     )
