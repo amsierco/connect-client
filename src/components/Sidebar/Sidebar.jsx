@@ -40,7 +40,7 @@ const Sidebar = () => {
                 <li><Link to='/notifications'>Notifications</Link></li>
                 <li><Link to='/post-form'>Create</Link></li>
                 <li><Link to={`/profile/${userId}`}>Profile</Link></li>
-                <li><button onClick={handleClick}>Logout</button></li>
+                <li id="logout-btn"><div onClick={handleClick}>Logout</div></li>
             </ul>
         </div>
     )

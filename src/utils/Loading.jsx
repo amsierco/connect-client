@@ -1,18 +1,12 @@
 import React from "react";
 
+// CSS
+import './Loading.css'
+
 const Loading = () => {
     return (
-        <div style={{
-            width: '100vw',
-            height: '100vh',
-            background: 'transparent',
-            color: 'red',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            fontSize: '5rem'
-        }}>
-            <div>
+        <div className="loading-wrapper">
+            <div id="loading-icon">
                 LOADING
             </div>
         </div>

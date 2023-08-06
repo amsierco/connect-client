@@ -5,36 +5,45 @@
     gap: 2rem;
     padding: 2rem;
 
-    > * {
-        /* width: 100%;
-        border: 1px solid black; */
-    }
-
    > .header {
         display: grid;
         grid-template-columns: 2fr 1fr;
-
+        border: 1px solid black;
+        
         > .info {
             display: grid;
             grid-template-columns: 1fr 5fr;
+            gap: 1rem;
 
             > #icon-wrapper {
-
                 > #icon {
-                    aspect-ratio: 1/1;
-                    background-color: var(--light-orange);
+                    width: 8rem;
+                    height: 8rem;
                     border-radius: 100%;
-                    background-size: cover;
+                    background: radial-gradient(circle, var(--light-gray) 65%, var(--light-orange) 5%);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-size: contain;
                     background-position: center;
+        
+                    > img#guest {
+                        margin-left: 4px;
+                        width: 70%;
+                    }
                 }
             }
 
             > #details {
-                padding-left: 2rem;
-                display: flex;
-                gap: 1rem;
                 font-size: 2rem;
-                align-items: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                > #description {
+                    font-size: 1.25rem;
+                }
+
             }
         }
 
@@ -54,7 +63,15 @@
         padding: 1rem;
 
         > .all-posts {
+            display: grid;
+            grid-template-columns: repeat(5, 10rem);
+            grid-template-rows: repeat(auto, 10rem);
+            gap: 1rem;
 
+            > div {
+                width: 100%;
+                height: 100%;
+            }
         }
     }
 }

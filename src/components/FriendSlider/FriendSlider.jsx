@@ -38,23 +38,33 @@ const FriendSlider = ({ userId }) => {
         }
         // Call API function
         api();
-
     }, [])
+
+    const test = () => {
+        const item = document.getElementById('scroll-menu');
+        item.addEventListener('wheel', (e) => {
+            // e.preventDefault();
+            if (e.deltaY > 0) item.scrollLeft += 100;
+            else item.scrollLeft -= 100;
+            // item.scrollLeft += e.deltaY + e.deltaX;
+          });
+    }
 
     return (
         loading === true ? <Loading /> : 
-        <div className="friend-slider-wrapper">
-            <ul className="scroll-menu">
-                {friends.map(friend => {
-                            return (
-                                <li key={friend}>
-                                    <FriendPreview userId={friend} />
-                                </li>
-                            );
-                        })}
-                </ul>
-        </div>
+        <ul id="scroll-menu" onMouseEnter={test}>
+            {friends.map(friend => {
+                        return (
+                            <li key={friend}>
+                                <FriendPreview userId={friend} />
+                            </li>
+                        );
+                    })}
+            </ul>
     )
 }
 
 export default FriendSlider;
+/**
+ * (e) => {console.log('a'); horizontalScroll(e);}
+ */

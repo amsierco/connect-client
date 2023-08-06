@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 // Utils
 import axios from "../../utils/AxiosConfig";
+import Loading from "../../utils/Loading";
 
 // CSS
 import './Timeline.css';
@@ -11,10 +12,12 @@ import Post from "../Post/Post";
 import SuggestedUsers from "../SuggestedUsers/SuggestedUsers";
 
 const Timeline = () => {
+    const[loading, setLoadingState] = useState(true);
     const [timeline, setTimeline] = useState([]);
 
     // Once on mount
     useEffect(() => {
+        setLoadingState(true);
         // API function
         const getTimeline = async () => {
             try {
@@ -22,7 +25,7 @@ const Timeline = () => {
                 const db_timeline = response.data;
                 // console.log('Timeline retrieved!');
                 setTimeline(db_timeline);
-
+                setLoadingState(false);
             } catch (err) {
                 console.log(err);
                 setTimeline([]);
@@ -34,9 +37,11 @@ const Timeline = () => {
     }, []);
 
     return(
+        loading === true ? <Loading /> : 
         <React.Fragment>
             <div className="timeline-container">
                 <ul className="timeline-wrapper">
+                    <div>Timeline</div>
                     {timeline.map(post => {
                         return (
                             <li key={post._id}>

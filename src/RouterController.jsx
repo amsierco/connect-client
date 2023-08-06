@@ -15,6 +15,7 @@ import Search from './components/Search/Search';
 
 // Utils
 import ProtectedRoute from './utils/ProtectedRoute';
+import Loading from './utils/Loading';
 
 const RouterController = () => {
   return (
@@ -24,6 +25,9 @@ const RouterController = () => {
         <Route path='/login' element={ <Login /> } />
         {/* SIGNUP */}
         <Route path='/signup' element={ <Signup /> } />
+
+        {/* LOADING TESTING ONLY */}
+        <Route path='/loading' element={ <Loading /> } />
 
         {/* HOME */}
         <Route path='/' element={ <ProtectedRoute><Home /></ProtectedRoute> }>

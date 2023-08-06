@@ -1,18 +1,34 @@
 .sidebar-wrapper {
-    border: 1px solid var(--dark-gray);
+    border-right: 1px solid var(--dark-gray);
+    height: 100vh;
     display: flex;
     justify-content: center;
-}
 
-.sidebar-wrapper li {
-    margin-top: 2rem;
-    font-size: 1.5rem;
+    > ul {
+        position: relative;
 
-    & h1 {
-        font-size: 2.5rem;
-    }
+        > li {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+        
+            & h1 {
+                font-size: 2.5rem;
+            }
+        
+            & a:hover {
+                color: var(--light-orange);
+            }
+        }
 
-    & a:hover {
-        color: var(--light-orange);
+        > #logout-btn{
+            font-size: 1.5rem;
+            position: absolute;
+            bottom: 5px;
+
+            >:hover {
+                color: var(--light-orange);
+                cursor: pointer;
+            }
+        }
     }
 }

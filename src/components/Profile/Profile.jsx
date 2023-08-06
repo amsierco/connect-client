@@ -55,10 +55,16 @@ const Profile = () => {
             <div className="header">
                 <div className="info">
                     <div id="icon-wrapper">
-                        <div id='icon' style={{backgroundImage: `url(${picture})`}} />
+                    {
+                        undefined !== picture ? 
+                        <div id='icon' style={{backgroundImage: `url(${picture})`}} /> : 
+                        <div id='icon'>
+                            <img src='../../guest-32.png' alt='' id="guest"/>
+                        </div>
+                    }
                     </div>
                     <div id='details'>
-                        <div id='username'> {username} </div>
+                        <h4 id='username'> {username} </h4>
                         <div id='description'>
                             I like to program
                         </div>
@@ -73,15 +79,15 @@ const Profile = () => {
             </div>
             <div className="all-posts-wrapper">
                 All Posts
-                <ul className="all-posts">
+                <div className="all-posts">
                     {posts.map(postId => {
                         return (
-                            <li key={postId}>
+                            <div key={postId}>
                                 <ProfilePost postId={postId}/>
-                            </li>
+                            </div>
                         );
                     })}
-                </ul>
+                </div>
             </div>
         </div>
     )

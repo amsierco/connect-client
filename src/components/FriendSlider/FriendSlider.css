@@ -1,9 +1,21 @@
-.friend-slider-wrapper {
-    width: 100%;
-    overflow: none;
+/*
+    React-Icons?
+*/
 
-    > .scroll-menu {
-        display: flex;
-        overflow: auto;
+#scroll-menu {
+    display: flex;
+    gap: .5rem;
+    height: 100%;   
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: none;
+    /* scroll-behavior: smooth; */
+
+    > li {
+        /* border: 1px solid red;  */
     }
 }
+
+#scroll-menu::-webkit-scrollbar {
+    display: none; 
+} 
