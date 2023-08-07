@@ -11,10 +11,11 @@
     }
 
     #guest-picture {
+        border: 1px solid var(--light-orange);
         aspect-ratio: 1/1;
         border-radius: 100%;
-        background: radial-gradient(circle, var(--light-gray) 65%, var(--light-orange) 5%);
-        margin-left: 5px;
-        width: 70%;
+        background-size: contain;
+        background-position: center;
+        background-position-x: 2px;
     }
 }

@@ -3,7 +3,7 @@ import React from "react";
 // Utils
 import axios from "../../utils/AxiosConfig";
 
-const FriendRequestBtn = ({ userId }) => {
+const FriendRequestBtn = ({ userId, unfriend=false }) => {
 
     const axiosConfig = {
         headers: { 
@@ -21,7 +21,7 @@ const FriendRequestBtn = ({ userId }) => {
 
     return (
         <button onClick={handleClick}>
-            Click me!
+            {unfriend ? 'Remove' : 'Send Friend Request'}
         </button>
     )
 }

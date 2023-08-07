@@ -8,12 +8,16 @@ const UserInfo = ({
     userObj, 
     imageSize='2rem', 
     fontSize='1rem', 
-    gap='.5rem'
+    gap='.5rem',
+    orientation='row'
 }) => {
     const guest_pic = '../../guest-32.png';
 
     return (
-        <div className="user-info" style={{gap: `${gap}`}}>
+        <div className="user-info" style={{
+            gap: `${gap}`,
+            flexDirection: `${orientation}`
+        }}>
             {undefined !== userObj.picture ? 
             <Link 
                 to={`/profile/${userObj._id}`} 
@@ -26,9 +30,13 @@ const UserInfo = ({
             : 
             <Link 
                 to={`/profile/${userObj._id}`} 
-                id='user-icon'
+                id="guest-picture"
+                style={{
+                    backgroundImage: `url(${guest_pic})`,
+                    width: `${imageSize}`
+                }}
             >
-                <img src={guest_pic} alt='' id="guest-picture"/>
+                {/* <img src={guest_pic} alt='' id="guest-picture"/> */}
             </Link>}
             <div style={{fontSize: `${fontSize}`}}>{userObj.username}</div>
         </div>
