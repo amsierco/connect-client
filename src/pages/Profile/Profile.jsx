@@ -6,9 +6,9 @@ import axios from "../../utils/AxiosConfig";
 import Loading from "../../utils/Loading";
 
 // Components
-import FriendSlider from "../FriendSlider/FriendSlider";
-import FriendRequestBtn from "../FriendRequestBtn/FriendRequestBtn";
-import ProfilePost from "../ProfilePost/ProfilePost";
+import FriendSlider from "../../components/FriendSlider/FriendSlider";
+import FriendRequestBtn from "../../components/FriendRequestBtn/FriendRequestBtn";
+import ProfilePost from "../../components/ProfilePost/ProfilePost";
 
 // CSS
 import './Profile.css';
@@ -30,6 +30,10 @@ const Profile = () => {
             'Refresh_Token': sessionStorage.getItem('refresh_token')
         }
     };
+
+    const handleEdit = () => {
+        console.log('BEGIN EDIT')
+    }
 
     useEffect(() => {
         setLoadingState(true);
@@ -71,7 +75,10 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className="actions">
-                    <FriendRequestBtn userId={userId}/>
+                    {JSON.parse(sessionStorage.getItem('user'))._id === id ?
+                    <button id="edit-btn" onClick={handleEdit}>Edit</button>
+                    : 
+                    <FriendRequestBtn userId={userId}/>}
                 </div>
             </div>
             <div className="friend-slider">

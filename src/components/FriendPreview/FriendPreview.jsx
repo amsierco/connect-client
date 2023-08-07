@@ -15,6 +15,7 @@ import './FriendPreview.css';
 const FriendPreview = ({userId}) => {
     const[friend, setFriend] = useState();
     const[loading, setLoadingState] = useState(true);
+    const[isCurrentUser, setCurrentUser] = useState(false);
 
     const navigate = useNavigate();
 
@@ -23,14 +24,24 @@ const FriendPreview = ({userId}) => {
     //     return navigate(`/profile/${userId}`);
     // }
 
+    const axiosConfig = {
+        headers: { 
+            'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
+            'Refresh_Token': sessionStorage.getItem('refresh_token')
+        }
+    };
+
     useEffect(() => {
         // Get friends
 
         // API function
         const api = async () => {
             try {
-                const response = await axios.get(`/api/friend/${userId}`);
+                const response = await axios.get(`/api/friend/${userId}`, axiosConfig);
                 setFriend(response.data);
+                setCurrentUser(response.data.isUser);
+                console.log('isFriend? ' + response.data.isFriend);
+                console.log('isUser? ' + response.data.isUser);
                 setLoadingState(false);
             } catch (err) {
                 console.log(err);
@@ -52,7 +63,8 @@ const FriendPreview = ({userId}) => {
                 gap=".5rem"
                 orientation="column"
             />
-            <FriendRequestBtn userId={userId} unfriend={true} />
+            {isCurrentUser ? null :
+            <FriendRequestBtn userId={userId} unfriend={friend.isFriend} />}
         </div>
     )
 }

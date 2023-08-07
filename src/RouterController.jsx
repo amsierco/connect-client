@@ -8,7 +8,7 @@ import Signup from './pages/Signup/Signup';
 import Home from './components/Home/Home';
 import PostForm from './components/PostForm/PostForm';
 import Timeline from "./pages/Timeline/Timeline";
-import Profile from './components/Profile/Profile';
+import Profile from './pages/Profile/Profile';
 import Friends from './components/Friends/Friends';
 import Notifications from './components/Notifications/Notifications';
 import Search from './components/Search/Search';

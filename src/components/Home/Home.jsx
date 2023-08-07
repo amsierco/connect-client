@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
 // CSS
@@ -10,8 +10,6 @@ import { NotificationContext } from "../../utils/NotificationContext";
 
 // Components
 import Sidebar from "../../pages/Sidebar/Sidebar";
-
-// const NotificationContext = createContext([]);
 
 const Home = () => {
 
@@ -28,20 +26,14 @@ const Home = () => {
     };
 
     async function getNotifications() {
-        console.log('CALLED! ' + JSON.parse(sessionStorage.getItem('user'))._id)
         setLoadingState(true);
         // Get notifications
         const response = await axios.get(`/api/notifications/${JSON.parse(sessionStorage.getItem('user'))._id}`, axiosConfig);
-        console.log(response.data);
         setNotifications(response.data);
-
         setLoadingState(false);
-        // setNotifications (['a','b','c']);
     }
 
     useEffect(() => {
-
-
         // API call
         getNotifications();
     }, [])

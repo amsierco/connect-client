@@ -9,7 +9,6 @@ import { NotificationContext } from "../../utils/NotificationContext";
 
 const Notifications = () => {
     const {notifications, getNotifications} = useContext(NotificationContext);
-    console.log(notifications);
 
     const axiosConfig = {
         headers: { 
@@ -26,13 +25,13 @@ const Notifications = () => {
     return (
         <div className="notifications-container">
             <ul>
+                <button onClick={getNotifications}>REFRESH PAGE</button>
                 {notifications.map((notif) => {
                     return (
                         <li key={notif.sender}>
-                            <div>'type ' + {notif.notification_type}</div>
+                            <div id='notif-message'>'type ' + {notif.notification_type}</div>
                             <div>'sender id ' + {notif.sender}</div>
                             <button onClick={() => handleClick(notif._id)}>ACCEPT</button>
-                            <button onClick={getNotifications}>CLICK ME</button>
                         </li>
                     )
                 })}

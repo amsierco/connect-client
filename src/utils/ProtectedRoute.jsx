@@ -42,7 +42,7 @@ const ProtectedRoute = (props) => {
 
     // Validates user token 
     useEffect(() => {
-        console.log('Validating Token')
+        // console.log('Validating Token')
         checkUserToken();
     });
 
