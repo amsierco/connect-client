@@ -140,7 +140,10 @@
         }
 
         > button {
-            padding: .25rem;
+            padding: .4rem;
+            border: 1px solid var(--dark-gray);
+            border-radius: .5rem;
+            background-color: var(--light-orange);
         }
     }
 }

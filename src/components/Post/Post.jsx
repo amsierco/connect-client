@@ -146,7 +146,7 @@ const Post = ({ post }) => {
             <div className="comment-form">
                 <div className="comment-form-background"/>
                 <form onSubmit={handleSubmit}>
-                    <input type="text" onChange={e => setCommentMessage(e.target.value)} placeholder="Add a comment"/>
+                    <input type="text" onChange={e => setCommentMessage(e.target.value)} placeholder="Add a comment..."/>
                     <button className='button-wrapper' type="submit">Comment</button>
                 </form>
             </div> 

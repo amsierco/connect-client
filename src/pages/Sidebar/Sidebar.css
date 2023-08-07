@@ -3,27 +3,46 @@
     height: 100vh;
     display: flex;
     justify-content: center;
+    box-shadow: 1px 0 4px 0 var(--dark-gray);
 
     > ul {
         position: relative;
+        width: 100%;
+        padding-right: 5%;
 
         > li {
-            margin-top: 2rem;
+            position: relative;
+            margin-top: 3rem;
             font-size: 1.5rem;
-        
+            padding-top: .25rem;
+            padding-bottom: .25rem;
+            /* border: 1px solid green; */
+            /* height: 5%; */
+            display: flex;
+            align-items: center;
+
+            > * {
+                padding-left: 25%;
+            }
+
             & h1 {
                 font-size: 2.5rem;
             }
-        
-            & a:hover {
-                color: var(--light-orange);
+
+            > a {
+                &:hover {
+                    color: var(--light-orange);
+                }
             }
         }
 
         > #logout-btn{
             font-size: 1.5rem;
             position: absolute;
-            bottom: 5px;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding-right: 5%;
 
             >:hover {
                 color: var(--light-orange);
@@ -32,3 +51,44 @@
         }
     }
 }
+
+#active-nav {
+    > a {
+        animation: active-nav 500ms ease-out forwards;
+        background-color: var(--dark-gray);
+        border-bottom-right-radius: 3rem;
+        border-top-right-radius: 3rem;
+        color: var(--text-light);
+        padding-top: .25rem;
+        padding-bottom: .25rem;
+    }
+}
+
+@keyframes active-nav {
+    0%{
+        background: linear-gradient(to right, var(--dark-gray) 50%, transparent 50%);
+        background-size: 200% 100%;
+        background-position: right bottom;
+        width: 0%;
+    }
+    100%{
+        background: linear-gradient(to right, var(--dark-gray) 50%, transparent 50%);
+        background-size: 200% 100%;
+        background-position: left bottom;
+        width: 100%;
+    }
+}
+
+/* #active-nav:before {
+    content: "";
+    position:absolute;
+    top:0;
+    left:0;
+    transform: translateY(100%);
+    width: 20%;
+    height: 100%;
+    border-top-left-radius: 2.55rem;
+    background: transparent;
+    box-shadow: -30px -5px 0 0 var(--dark-gray);
+} */
+

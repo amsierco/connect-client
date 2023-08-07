@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 // Components
-import ErrorPage from './components/ErrorPage';
+import ErrorPage from './pages/ErrorPage';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import Home from './components/Home/Home';

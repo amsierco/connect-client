@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+
+// Utils
 import axios from "./AxiosConfig";
 
 const ProtectedRoute = (props) => {
-
     const navigate = useNavigate();
-
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const checkUserToken = async() => {
@@ -42,13 +42,15 @@ const ProtectedRoute = (props) => {
 
     // Validates user token 
     useEffect(() => {
-        // console.log('Validating Token')
+        console.log('Validating Token')
         checkUserToken();
     });
 
     return (
         <React.Fragment>
-            {isLoggedIn ? props.children : null}
+            {isLoggedIn ? 
+                    props.children
+            : null}
         </React.Fragment>
     );
 }

@@ -2,7 +2,6 @@
     background-color: var(--dark-gray);
     display: grid;
     grid-template-columns: 1fr 3fr;
-    border: 1px solid red;
 }
 
 .signup-form-wrapper {

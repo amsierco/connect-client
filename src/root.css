@@ -47,3 +47,8 @@ input {
 ul {
     list-style: none;
 }
+
+button:hover {
+    cursor: pointer;
+    transform: translateY(1px);
+}

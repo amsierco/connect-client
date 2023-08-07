@@ -7,7 +7,12 @@ const Loading = () => {
     return (
         <div className="loading-wrapper">
             <div id="loading-icon">
-                LOADING
+                <div className="loading-el"></div>
+                <div className="loading-el"></div>
+                <div className="loading-el"></div>
+                <div className="loading-el"></div>
+                <div className="loading-el"></div>
+                {/* LOADING */}
             </div>
         </div>
     )
