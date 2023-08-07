@@ -8,8 +8,8 @@ import Loading from "../../utils/Loading";
 import './Timeline.css';
 
 // Components
-import Post from "../Post/Post";
-import SuggestedUsers from "../SuggestedUsers/SuggestedUsers";
+import Post from "../../components/Post/Post";
+import SuggestedUsers from "../../components/SuggestedUsers/SuggestedUsers";
 
 const Timeline = () => {
     const[loading, setLoadingState] = useState(true);
@@ -22,13 +22,13 @@ const Timeline = () => {
         const getTimeline = async () => {
             try {
                 const response = await axios.get('/api/posts');
-                const db_timeline = response.data;
+                // const db_timeline = response.data;
+                // console.log(response.data)
                 // console.log('Timeline retrieved!');
-                setTimeline(db_timeline);
+                setTimeline(response.data);
                 setLoadingState(false);
             } catch (err) {
                 console.log(err);
-                setTimeline([]);
             }
         }
         // Call API function
@@ -45,7 +45,7 @@ const Timeline = () => {
                     {timeline.map(post => {
                         return (
                             <li key={post._id}>
-                                <Post content={post}/>
+                                <Post post={post}/>
                             </li>
                         );
                     })}

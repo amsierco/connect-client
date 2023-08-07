@@ -3,11 +3,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 // Components
 import ErrorPage from './components/ErrorPage';
-import Login from './components/Login/Login';
-import Signup from './components/Signup/Signup';
+import Login from './pages/Login/Login';
+import Signup from './pages/Signup/Signup';
 import Home from './components/Home/Home';
 import PostForm from './components/PostForm/PostForm';
-import Timeline from "./components/Timeline/Timeline";
+import Timeline from "./pages/Timeline/Timeline";
 import Profile from './components/Profile/Profile';
 import Friends from './components/Friends/Friends';
 import Notifications from './components/Notifications/Notifications';

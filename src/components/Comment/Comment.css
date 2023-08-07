@@ -1,0 +1,5 @@
+.comment-wrapper-local {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}

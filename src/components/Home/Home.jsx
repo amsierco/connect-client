@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 import './Home.css';
 
 // Components
-import Sidebar from "../Sidebar/Sidebar";
+import Sidebar from "../../pages/Sidebar/Sidebar";
 
 const Home = () => {
     return(

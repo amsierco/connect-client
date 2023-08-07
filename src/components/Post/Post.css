@@ -1,3 +1,7 @@
+/* 
+    COULD TRY A LINEAR GRADIENT
+*/
+
 .z-index-wrapper {
     isolation: isolate;
     position: relative;
@@ -18,9 +22,7 @@
     max-height: 30rem;
     height: fit-content;
 
-    border-radius: .5rem;
     border-bottom-right-radius: 3rem;
-    border-bottom-left-radius: 0;
     padding-bottom: .5rem;
 
     > .post-wrapper-background {
@@ -39,7 +41,7 @@
         aspect-ratio: 1/1;
         border-radius: 100%;
         background: radial-gradient(circle, var(--light-gray) 65%, var(--light-orange) 5%);
-        border: 3px solid var(--light-gray);
+        border: 3px solid var(--comment-background);
         top: 0;
         left: 0;
         transform: translate(-25%, -25%);
@@ -155,6 +157,10 @@
         &:first-child {
             border-top-left-radius: 0;
         }
+
+        &:last-child {
+            border-bottom-right-radius: 3rem;
+        }
     }
 }
 
@@ -170,10 +176,14 @@
             border-top-left-radius: 3rem;
         }
 
+        &:last-child {
+            border-bottom-right-radius: 3rem;
+        }
+
         > .comment-form-background {
             z-index: -1;
             position: absolute;
-            background-color: var(--post-background);
+            background: linear-gradient(45deg, var(--post-background) 50%, transparent 50%);
             width: 100%;
             height: 100%;
             top: 0;
