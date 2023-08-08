@@ -101,7 +101,7 @@ const Post = ({ post }) => {
         const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
         const date_data = new Date(post.date.toLocaleString().split('T')[0]);
         const month = months[date_data.getMonth()]
-        const date_string = month + ' ' + date_data.getDay() + ', ' + date_data.getFullYear();
+        const date_string = month + ' ' + date_data.getDate() + ', ' + date_data.getFullYear();
         setDate(date_string);
 
         // Call API functions

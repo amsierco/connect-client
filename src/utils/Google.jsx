@@ -18,11 +18,11 @@ const Google = () => {
           "Content-Type": "application/json"
         }
       });
-      const access_token = response.data.access_token;
-      const refresh_token = response.data.refresh_token;
+      const accessToken = response.data.accessToken;
+      const refreshToken = response.data.refreshToken;
 
-      sessionStorage.setItem('access_token', access_token);
-      sessionStorage.setItem('refresh_token', refresh_token);
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
 
       // Redirect to homepage
       return navigate('/');
@@ -34,7 +34,7 @@ const Google = () => {
 
   const handleGoogleLogin = useGoogleLogin({
     onSuccess: codeResponse => {
-      console.log(codeResponse);
+      // console.log(codeResponse);
       sendGoogleToServer(codeResponse);
     },
     onError: () => console.log('Google Login Failed'),

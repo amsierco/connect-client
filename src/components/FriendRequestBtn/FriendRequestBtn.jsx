@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 // Utils
 import axios from "../../utils/AxiosConfig";
 
 const FriendRequestBtn = ({ userId, unfriend=false }) => {
+    const [isFriend, setFriend] = useState(unfriend);
+
 
     const axiosConfig = {
         headers: { 
@@ -16,12 +18,13 @@ const FriendRequestBtn = ({ userId, unfriend=false }) => {
         axios.post(`/api/friend/${userId}/request`, {}, axiosConfig)
         .then ((response) => {
             console.log('Process Complete');
+            // setFriend(false);
         })
     }
 
     return (
         <button onClick={handleClick}>
-            {unfriend ? 'Unfriend' : 'Add Friend'}
+            {isFriend ? 'Unfriend' : 'Add Friend'}
         </button>
     )
 }

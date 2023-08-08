@@ -29,11 +29,18 @@ const Home = () => {
         // console.log(response.data);
         // setNotifications(response.data);
         // setLoadingState(false);
+        console.log('getNOTIF')
+        // console.log((localStorage.getItem('user'))?.notifications)
+        // console.log(typeof(JSON.parse(localStorage.getItem('user')).notifications))
+        setNotifications(JSOn.parse(localStorage.getItem('user').notifications));
     }
 
     useEffect(() => {
         // API call
         // getNotifications();
+        console.log('init');
+        // console.log((localStorage.getItem('user')))
+        // console.log(JSON.parse(localStorage.getItem('user')).notifications);
         setNotifications(JSON.parse(localStorage.getItem('user')).notifications);
     }, [])
 

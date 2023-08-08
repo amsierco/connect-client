@@ -7,6 +7,15 @@ import { NotificationContext } from "../../utils/NotificationContext";
 
 // CSS
 import './Sidebar.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+    faHouse as houseSolid, 
+    faMagnifyingGlass as searchSolid,
+    faBell as bellSolid,
+    faPlus as plusSolid,
+    faUserGroup as friendSolid,
+    faUser as userSolid
+} from '@fortawesome/free-solid-svg-icons';
 
 const Sidebar = () => {
     const [userId, setUserId] = useState();
@@ -34,30 +43,45 @@ const Sidebar = () => {
             <ul>
                 <li><h1>Connect</h1></li>
                 <li id={page === '/' ? 'active-nav' : null}>
-                    <Link to='/' onClick={() => setPage('/')}>Home</Link>
+                    <Link to='/' onClick={() => setPage('/')}>
+                    <FontAwesomeIcon icon={houseSolid} /> Home
+                    </Link>
                 </li>
                 <li id={page === '/search' ? 'active-nav' : null}>
-                    <Link to='/search' onClick={() => setPage('/search')}>Search</Link>
+                    <Link to='/search' onClick={() => setPage('/search')}>
+                        <FontAwesomeIcon icon={searchSolid} /> Search
+                    </Link>
                 </li>
                 <li id={page === '/friends' ? 'active-nav' : null}>
-                    <Link to='/friends' onClick={() => setPage('/friends')}>Friends</Link>
+                    <Link to='/friends' onClick={() => setPage('/friends')}>
+                        <FontAwesomeIcon icon={friendSolid} /> Friends
+                    </Link>
                 </li>
                 <li id={page === '/notifications' ? 'active-nav' : null}>
                     <Link to='/notifications' onClick={() => setPage('/notifications')}>
-                        {
+                        
+                        <div id="notif-counter-wrapper">
+                            <FontAwesomeIcon icon={bellSolid} /> Notifications
+                            {/* <div id="notif-counter">0</div> */}
+                        </div>
+                        {/* {
                         notifications.length !== 0 ? 
                             notifications.length === 1 ? 
                                 '1 Notification' 
                             : notifications.length + ' Notifications' 
                         : '0 Notifications'
-                        }
+                        } */}
                     </Link>
                 </li>
                 <li id={page === '/post-form' ? 'active-nav' : null}>
-                    <Link to='/post-form' onClick={() => setPage('/post-form')}>Create</Link>
+                    <Link to='/post-form' onClick={() => setPage('/post-form')}>
+                        <FontAwesomeIcon icon={plusSolid} /> Create
+                    </Link>
                 </li>
                 <li id={new RegExp('/profile/*').test(page) ? 'active-nav' : null}>
-                    <Link to={`/profile/${userId}`} onClick={() => setPage(`/profile/${userId}`)}>Profile</Link>
+                    <Link to={`/profile/${userId}`} onClick={() => setPage(`/profile/${userId}`)}>
+                        <FontAwesomeIcon icon={userSolid} /> Profile
+                    </Link>
                 </li>
                 <li id="logout-btn"><div onClick={handleClick}>Logout</div></li>
             </ul>

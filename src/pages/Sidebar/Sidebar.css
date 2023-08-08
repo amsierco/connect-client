@@ -16,13 +16,11 @@
             font-size: 1.5rem;
             padding-top: .25rem;
             padding-bottom: .25rem;
-            /* border: 1px solid green; */
-            /* height: 5%; */
             display: flex;
             align-items: center;
 
             > * {
-                padding-left: 25%;
+                padding-left: 10%;
             }
 
             & h1 {
@@ -78,16 +76,20 @@
     }
 }
 
-/* #active-nav:before {
-    content: "";
-    position:absolute;
-    top:0;
-    left:0;
-    transform: translateY(100%);
-    width: 20%;
-    height: 100%;
-    border-top-left-radius: 2.55rem;
-    background: transparent;
-    box-shadow: -30px -5px 0 0 var(--dark-gray);
-} */
+#notif-counter-wrapper {
+    position: relative;
+}
 
+#notif-counter {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    font-size: 1.25rem;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    transform: translate(30%, -65%);
+}

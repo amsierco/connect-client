@@ -14,13 +14,28 @@ const Notifications = () => {
     const axiosConfig = {
         headers: { 
             'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
-            'Refresh_Token': localStorage.getItem('refreshToken')
+            'Refresh_Token': localStorage.getItem('refreshToken') 
         }
     };
 
     const handleClick = async(id, status) => {
-        await axios.post(`/api/notifications/friend-request/${id}/${status}`, {}, axiosConfig);
-        getNotifications;
+        console.log('pre');console.log(JSON.parse(localStorage.getItem('user')));
+        // Handle notification action and returns updated array
+        const updatedNotifications = await axios.post(`/api/notifications/friend-request/${id}/${status}`, {}, axiosConfig);
+        console.log('response recieved');
+        const user = JSON.parse(localStorage.getItem('user'));
+        console.log('recieved user');
+        console.log(user.notifications);
+        // console.log(JSON.parse(localStorage.getItem('user')));
+        user.notifications = updatedNotifications.data.notifications;
+        console.log(updatedNotifications.data.notifications);
+        console.log(user.notifications);
+        // // console.log(updatedNotifications.data.notifications);
+
+        localStorage.setItem('user', user);
+        console.log('updated user');
+        // console.log(JSON.parse(localStorage.getItem('user')));
+        // getNotifications();
     }
 
     //notif.notification_type

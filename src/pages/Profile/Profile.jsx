@@ -19,23 +19,44 @@ const Profile = () => {
     const[user, setUser] = useState();
     const[isFriend, setFriend] = useState(false);
     const[isOwner, setOwner] = useState(false);
-
-    const[picture, setPicture] = useState();
-    const[username, setUsername] = useState();
-    const[userId, setUserId] = useState();
     const[posts, setPosts] = useState([]);
+    const[isEditing, setEditing] = useState(false);
 
+    const[description, setDescription] = useState();
+    const[descriptionPlaceholder, setDescriptionPlaceholder] = useState();
 
     const { id } = useParams();
 
     const axiosConfig = {
         params: {
             activeUserId: JSON.parse(localStorage.getItem('user'))._id
+        },
+        headers: { 
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+            'Refresh_Token': localStorage.getItem('refreshToken')
         }
     };
 
     const handleEdit = () => {
-        console.log('BEGIN EDIT')
+        setEditing(!isEditing);
+    }
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        
+        try {
+            axios.post(
+                `/api/profile/${id}/edit`, 
+                { description: descriptionPlaceholder },
+                axiosConfig
+            )
+            setDescription(descriptionPlaceholder);
+            setEditing(false);
+
+        } catch (err) {
+            setEditing(false);
+            console.log(err);
+        }
     }
 
     useEffect(() => {
@@ -49,10 +70,10 @@ const Profile = () => {
                 setFriend(response.data.isFriend);
                 setOwner(response.data.isOwner);
                 setPosts(response.data.user.posts);
-                console.log(response.data.user.posts)
+                setDescription(response.data.user?.description);
                 setLoadingState(false);
             });
-    }, [id])
+    }, [id, description])
 
     return (
         loading === true ? <Loading /> : 
@@ -72,17 +93,29 @@ const Profile = () => {
                     </div>
                     <div id='details'>
                         <h4 id='username'> {user.username} </h4>
-                        <div id='description'>
-                            I like to program
-                        </div>
+                        {!isEditing ?
+                            <div id='description'>
+                                {description}
+                            </div>
+                        :
+                            <form action="" id="description" onSubmit={handleSubmit}>
+                                <input type="text" placeholder={description} onChange={e => setDescriptionPlaceholder(e.target.value)}/>
+                            </form>}
+                         
                     </div>
                 </div>
                 <div className="actions">
                     {isOwner ?
-                        <button id="edit-btn" onClick={handleEdit}>Edit</button>
+                        <>
+                        <button id="edit-btn" onClick={handleEdit}>{isEditing ? 'Cancel' : 'Edit'}</button>
+                        {
+                            isEditing ? 
+                            <button type="submit" form="description">Confirm</button> 
+                        : null}
+                        </>
                     : !isFriend ? 
                         <FriendRequestBtn userId={user._id}/>
-                    :null}
+                    :   <FriendRequestBtn userId={user._id} unfriend={true}/>}
                 </div>
             </div>
             <div className="friend-slider">
