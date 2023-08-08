@@ -5,6 +5,8 @@
     justify-content: center;
     box-shadow: 1px 0 4px 0 var(--dark-gray);
 
+    width: 250px;
+
     > ul {
         position: relative;
         width: 100%;
@@ -19,6 +21,8 @@
             display: flex;
             align-items: center;
 
+            height: 35px;
+
             > * {
                 padding-left: 10%;
             }
@@ -27,31 +31,32 @@
                 font-size: 2.5rem;
             }
 
-            > a {
+            > a, #logout-btn {
+                display: flex;
+                align-items: center;   
+                gap: .5rem;
+
                 &:hover {
                     color: var(--light-orange);
+                    cursor: pointer;
                 }
             }
         }
 
-        > #logout-btn{
+        > #logout-btn-wrapper{
             font-size: 1.5rem;
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
             padding-right: 5%;
-
-            >:hover {
-                color: var(--light-orange);
-                cursor: pointer;
-            }
         }
     }
 }
 
 #active-nav {
     > a {
+        height: 35px;
         animation: active-nav 500ms ease-out forwards;
         background-color: var(--dark-gray);
         border-bottom-right-radius: 3rem;
@@ -61,6 +66,10 @@
         padding-bottom: .25rem;
         width: 100%;
     }
+}
+
+#logo-icon {
+    display: none;
 }
 
 @keyframes active-nav {
@@ -76,20 +85,48 @@
     }
 }
 
-#notif-counter-wrapper {
-    position: relative;
-}
+@media screen and (max-width: 1200px) {
+    .sidebar-wrapper {
+        width: 125px;
 
-#notif-counter {
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    font-size: 1.25rem;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    left: 0;
-    transform: translate(30%, -65%);
+        & ul {
+            padding-right: 0;
+            margin-right: 5px;
+        }
+
+        & ul > li {
+            height: 35px;
+            justify-content: center;
+
+            > * {
+                padding-left: 0;
+            }
+        }
+
+        /* Removed sidebar text */
+        & 
+            ul > li > a > div,
+            ul > li > div > div
+        {
+            display: none;
+        }
+    }
+
+    #active-nav > a {
+        justify-content: center;
+    }
+
+    #logo-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        border-radius: 100%;
+        background-color: var(--medium-gray);
+    }
+
+    #logo-text {
+        display: none;
+    }
 }

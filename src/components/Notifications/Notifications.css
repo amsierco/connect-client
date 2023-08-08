@@ -1,4 +1,6 @@
 .notifications-container {
+    padding: 1rem;
+    
     & li {
         padding: 1rem;
         display: flex;

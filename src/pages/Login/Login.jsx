@@ -32,7 +32,7 @@ const Login = () => {
             localStorage.setItem('refreshToken', response.data.refreshToken);
 
             // Redirect to homepage
-            console.log('navigating to home')
+            // console.log('navigating to home')
             return navigate('/');
 
         } catch (err) {
