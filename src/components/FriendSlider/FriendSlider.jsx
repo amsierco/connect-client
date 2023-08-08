@@ -16,8 +16,8 @@ const FriendSlider = ({ userId }) => {
 
     const axiosConfig = {
         headers: { 
-            'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
-            'Refresh_Token': sessionStorage.getItem('refresh_token')
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+            'Refresh_Token': localStorage.getItem('refreshToken')
         }
     };
 
@@ -65,6 +65,3 @@ const FriendSlider = ({ userId }) => {
 }
 
 export default FriendSlider;
-/**
- * (e) => {console.log('a'); horizontalScroll(e);}
- */

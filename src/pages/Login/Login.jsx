@@ -25,13 +25,14 @@ const Login = () => {
                 '/api/auth/login', 
                 { username_email, password }
             );
-            const access_token = response.data.access_token;
-            const refresh_token = response.data.refresh_token;
+            const accessToken = response.data.accessToken;
+            const refreshToken = response.data.refreshToken;
 
-            sessionStorage.setItem('access_token', access_token);
-            sessionStorage.setItem('refresh_token', refresh_token);
+            localStorage.setItem('accessToken', response.data.accessToken);
+            localStorage.setItem('refreshToken', response.data.refreshToken);
 
             // Redirect to homepage
+            console.log('navigating to home')
             return navigate('/');
 
         } catch (err) {

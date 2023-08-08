@@ -61,6 +61,7 @@
         color: var(--text-light);
         padding-top: .25rem;
         padding-bottom: .25rem;
+        width: 100%;
     }
 }
 
@@ -69,13 +70,11 @@
         background: linear-gradient(to right, var(--dark-gray) 50%, transparent 50%);
         background-size: 200% 100%;
         background-position: right bottom;
-        width: 0%;
     }
     100%{
         background: linear-gradient(to right, var(--dark-gray) 50%, transparent 50%);
         background-size: 200% 100%;
         background-position: left bottom;
-        width: 100%;
     }
 }
 

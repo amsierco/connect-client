@@ -26,8 +26,8 @@ const FriendPreview = ({userId}) => {
 
     const axiosConfig = {
         headers: { 
-            'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
-            'Refresh_Token': sessionStorage.getItem('refresh_token')
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+            'Refresh_Token': localStorage.getItem('refreshToken')
         }
     };
 
@@ -40,11 +40,11 @@ const FriendPreview = ({userId}) => {
                 const response = await axios.get(`/api/friend/${userId}`, axiosConfig);
                 setFriend(response.data);
                 setCurrentUser(response.data.isUser);
-                console.log('isFriend? ' + response.data.isFriend);
-                console.log('isUser? ' + response.data.isUser);
+                // console.log('isFriend? ' + response.data.isFriend);
+                // console.log('isUser? ' + response.data.isUser);
                 setLoadingState(false);
             } catch (err) {
-                console.log(err);
+                // console.log(err);
                 setLoadingState(false);
             }
         }

@@ -1,0 +1,8 @@
+.notifications-container {
+    & li {
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+}

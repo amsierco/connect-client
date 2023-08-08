@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 
 // Utils
 import axios from "../../utils/AxiosConfig";
+import UserInfo from "../UserInfo/UserInfo";
 
 // CSS
 import './Notifications.css';
@@ -12,15 +13,17 @@ const Notifications = () => {
 
     const axiosConfig = {
         headers: { 
-            'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
-            'Refresh_Token': sessionStorage.getItem('refresh_token')
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+            'Refresh_Token': localStorage.getItem('refreshToken')
         }
     };
 
-    const handleClick = async(id) => {
-        const response = await axios.post(`/api/notifications/friend-request/${id}/accept`, {}, axiosConfig);
+    const handleClick = async(id, status) => {
+        await axios.post(`/api/notifications/friend-request/${id}/${status}`, {}, axiosConfig);
         getNotifications;
     }
+
+    //notif.notification_type
 
     return (
         <div className="notifications-container">
@@ -29,9 +32,16 @@ const Notifications = () => {
                 {notifications.map((notif) => {
                     return (
                         <li key={notif.sender}>
-                            <div id='notif-message'>'type ' + {notif.notification_type}</div>
-                            <div>'sender id ' + {notif.sender}</div>
-                            <button onClick={() => handleClick(notif._id)}>ACCEPT</button>
+                            <UserInfo 
+                                userObj={notif.sender}
+                                imageSize="3rem"
+                                fontSize="1rem"
+                                gap=".5rem"
+                                orientation="row"
+                            />
+                            <div id='notif-message'>Sent you a friend request</div>
+                            <button onClick={() => handleClick(notif._id, 'accept')}>Accept</button>
+                            <button onClick={() => handleClick(notif._id, 'reject')}>Reject</button>
                         </li>
                     )
                 })}

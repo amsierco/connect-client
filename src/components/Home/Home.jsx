@@ -12,34 +12,34 @@ import { NotificationContext } from "../../utils/NotificationContext";
 import Sidebar from "../../pages/Sidebar/Sidebar";
 
 const Home = () => {
-
+    const[loading, setLoadingState] = useState(false);
     const [notifications, setNotifications] = useState([]);
 
-    const[loading, setLoadingState] = useState(true);
-    
-
-    const axiosConfig = {
-        headers: { 
-            'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
-            'Refresh_Token': sessionStorage.getItem('refresh_token')
-        }
-    };
+    // const axiosConfig = {
+    //     headers: { 
+    //         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+    //         'Refresh_Token': localStorage.getItem('refreshToken')
+    //     }
+    // };
 
     async function getNotifications() {
-        setLoadingState(true);
-        // Get notifications
-        const response = await axios.get(`/api/notifications/${JSON.parse(sessionStorage.getItem('user'))._id}`, axiosConfig);
-        setNotifications(response.data);
-        setLoadingState(false);
+        // setLoadingState(true);
+        // // Get notifications
+        // const response = await axios.get(`/api/notifications/${JSON.parse(localStorage.getItem('user'))._id}`, axiosConfig);
+        // console.log(response.data);
+        // setNotifications(response.data);
+        // setLoadingState(false);
     }
 
     useEffect(() => {
         // API call
-        getNotifications();
+        // getNotifications();
+        setNotifications(JSON.parse(localStorage.getItem('user')).notifications);
     }, [])
 
     return(
         loading ? null :
+
         <NotificationContext.Provider value={{notifications, getNotifications}}>
             <div className="homepage-wrapper">
                 <Sidebar />

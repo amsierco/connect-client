@@ -8,7 +8,7 @@ import Loading from "../../utils/Loading";
 // Components
 import FriendSlider from "../../components/FriendSlider/FriendSlider";
 import FriendRequestBtn from "../../components/FriendRequestBtn/FriendRequestBtn";
-import ProfilePost from "../../components/ProfilePost/ProfilePost";
+import PostPreview from "../../components/PostPreview/PostPreview";
 
 // CSS
 import './Profile.css';
@@ -17,17 +17,20 @@ const Profile = () => {
     const[loading, setLoadingState] = useState(true);
 
     const[user, setUser] = useState();
+    const[isFriend, setFriend] = useState(false);
+    const[isOwner, setOwner] = useState(false);
+
     const[picture, setPicture] = useState();
     const[username, setUsername] = useState();
     const[userId, setUserId] = useState();
     const[posts, setPosts] = useState([]);
 
+
     const { id } = useParams();
 
     const axiosConfig = {
-        headers: { 
-            'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
-            'Refresh_Token': sessionStorage.getItem('refresh_token')
+        params: {
+            activeUserId: JSON.parse(localStorage.getItem('user'))._id
         }
     };
 
@@ -39,17 +42,16 @@ const Profile = () => {
         setLoadingState(true);
 
         // Get profile
-        axios.get(`/api/profile/${id}`, axiosConfig)
-        .then ((response) => {
-            setUser(response.data);
-            setUsername(response.data.username);
-            setPicture(response.data.picture);
-            setUserId(response.data._id);
-            // console.log(response.data.posts)
-            setPosts(response.data.posts);
-            setLoadingState(false);
-        })
-       
+        axios
+            .get(`/api/profile/${id}`, axiosConfig)
+            .then ((response) => {
+                setUser(response.data.user);
+                setFriend(response.data.isFriend);
+                setOwner(response.data.isOwner);
+                setPosts(response.data.user.posts);
+                console.log(response.data.user.posts)
+                setLoadingState(false);
+            });
     }, [id])
 
     return (
@@ -60,37 +62,39 @@ const Profile = () => {
                 <div className="info">
                     <div id="icon-wrapper">
                     {
-                        undefined !== picture ? 
-                        <div id='icon' style={{backgroundImage: `url(${picture})`}} /> : 
-                        <div id='icon'>
-                            <img src='../../guest-32.png' alt='' id="guest"/>
-                        </div>
+                        undefined !== user.picture ? 
+                            <div id='icon' style={{backgroundImage: `url(${user.picture})`}} /> 
+                        : 
+                            <div id='icon'>
+                                <img src='../../guest-32.png' alt='' id="guest"/>
+                            </div>
                     }
                     </div>
                     <div id='details'>
-                        <h4 id='username'> {username} </h4>
+                        <h4 id='username'> {user.username} </h4>
                         <div id='description'>
                             I like to program
                         </div>
                     </div>
                 </div>
                 <div className="actions">
-                    {JSON.parse(sessionStorage.getItem('user'))._id === id ?
-                    <button id="edit-btn" onClick={handleEdit}>Edit</button>
-                    : 
-                    <FriendRequestBtn userId={userId}/>}
+                    {isOwner ?
+                        <button id="edit-btn" onClick={handleEdit}>Edit</button>
+                    : !isFriend ? 
+                        <FriendRequestBtn userId={user._id}/>
+                    :null}
                 </div>
             </div>
             <div className="friend-slider">
-                <FriendSlider userId={userId}/>
+                <FriendSlider userId={user._id}/>
             </div>
             <div className="all-posts-wrapper">
                 All Posts
                 <div className="all-posts">
-                    {posts.map(postId => {
+                    {posts.map(postInstance => {
                         return (
-                            <div key={postId}>
-                                <ProfilePost postId={postId}/>
+                            <div key={postInstance._id}>
+                                <PostPreview post={postInstance}/>
                             </div>
                         );
                     })}

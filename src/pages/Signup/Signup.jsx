@@ -26,11 +26,11 @@ const Signup = ({ setToken }) => {
                 '/api/auth/signup', 
                 { email, username, password }
             );
-            const access_token = response.data.access_token;
-            const refresh_token = response.data.refresh_token;
+            const accessToken = response.data.accessToken;
+            const refreshToken = response.data.refreshToken;
 
-            sessionStorage.setItem('access_token', access_token);
-            sessionStorage.setItem('refresh_token', refresh_token);
+            localStorage.setItem('accessToken', accessToken);
+            localStorage.setItem('refreshToken', refreshToken);
 
             // Redirect to homepage
             return navigate('/');

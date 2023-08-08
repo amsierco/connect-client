@@ -7,8 +7,8 @@ const FriendRequestBtn = ({ userId, unfriend=false }) => {
 
     const axiosConfig = {
         headers: { 
-            'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
-            'Refresh_Token': sessionStorage.getItem('refresh_token')
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+            'Refresh_Token': localStorage.getItem('refreshToken')
         }
     };
 
@@ -21,7 +21,7 @@ const FriendRequestBtn = ({ userId, unfriend=false }) => {
 
     return (
         <button onClick={handleClick}>
-            {unfriend ? 'Remove' : 'Send Friend Request'}
+            {unfriend ? 'Unfriend' : 'Add Friend'}
         </button>
     )
 }

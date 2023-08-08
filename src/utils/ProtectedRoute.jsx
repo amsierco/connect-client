@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Utils
@@ -10,18 +10,18 @@ const ProtectedRoute = (props) => {
 
     const checkUserToken = async() => {
  
-        const token = sessionStorage.getItem('access_token');
-        const refresh_token = sessionStorage.getItem('refresh_token');
+        const accessToken = localStorage.getItem('accessToken');
+        const refreshToken = localStorage.getItem('refreshToken');
 
         const axiosConfig = {
             headers: { 
-                'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
-                'Refresh_Token': sessionStorage.getItem('refresh_token')
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                'Refresh_Token': localStorage.getItem('refreshToken')
             }
         };
         
         // Check if token exists
-        if (!token || token === 'undefined' || !refresh_token || refresh_token === 'undefined') {
+        if (!accessToken || accessToken === 'undefined' || !refreshToken || refreshToken === 'undefined'){
             setIsLoggedIn(false);
             // Redirect to login page
             return navigate('/login');
@@ -30,8 +30,9 @@ const ProtectedRoute = (props) => {
         // Check if token is valid
         axios.get('/api/auth/validate', axiosConfig)
         .then ((response) => {
-            sessionStorage.setItem('access_token', response.data.access_token);
-            sessionStorage.setItem('user', JSON.stringify(response.data.user));
+            // Update client storage
+            localStorage.setItem('accessToken', response.data.accessToken);
+            localStorage.setItem('user', JSON.stringify(response.data.user));
             setIsLoggedIn(true);
         })
         .catch ((err) => {
@@ -40,16 +41,15 @@ const ProtectedRoute = (props) => {
         });
     }
 
-    // Validates user token 
+    // Validates user token on every rerender
     useEffect(() => {
-        // console.log('Validating Token')
         checkUserToken();
     });
 
     return (
         <React.Fragment>
             {isLoggedIn ? 
-                    props.children
+                props.children
             : null}
         </React.Fragment>
     );

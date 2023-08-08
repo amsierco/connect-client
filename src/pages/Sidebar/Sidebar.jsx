@@ -15,16 +15,18 @@ const Sidebar = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        sessionStorage.setItem('access_token', undefined);
-        sessionStorage.setItem('refresh_token', undefined);
+        localStorage.setItem('accessToken', undefined);
+        localStorage.setItem('refreshToken', undefined);
         navigate('/login');
     }
 
     // console.log(new RegExp('/profile/*').test(page));
 
     useEffect(() => {
-        setUserId(JSON.parse(sessionStorage.getItem('user'))._id);
-        setPage(window.location.pathname)
+        console.log('Load Sidebar ' + JSON.parse(localStorage.getItem('user'))._id);
+        setUserId(JSON.parse(localStorage.getItem('user'))._id);
+        setPage(window.location.pathname);
+        console.log('Sidebar loaded');
     }, []);
 
     return(
@@ -41,7 +43,15 @@ const Sidebar = () => {
                     <Link to='/friends' onClick={() => setPage('/friends')}>Friends</Link>
                 </li>
                 <li id={page === '/notifications' ? 'active-nav' : null}>
-                    <Link to='/notifications' onClick={() => setPage('/notifications')}>Notifications {notifications.length !== 0 ? notifications.length : null}</Link>
+                    <Link to='/notifications' onClick={() => setPage('/notifications')}>
+                        {
+                        notifications.length !== 0 ? 
+                            notifications.length === 1 ? 
+                                '1 Notification' 
+                            : notifications.length + ' Notifications' 
+                        : '0 Notifications'
+                        }
+                    </Link>
                 </li>
                 <li id={page === '/post-form' ? 'active-nav' : null}>
                     <Link to='/post-form' onClick={() => setPage('/post-form')}>Create</Link>
