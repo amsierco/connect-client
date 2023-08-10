@@ -4,63 +4,64 @@ import React, { useEffect, useState} from "react";
 import axios from "../../utils/AxiosConfig";
 import Loading from "../../utils/Loading";
 
+// Components
+import UserInfo from "../UserInfo/UserInfo";
+
 // CSS
 import "./FriendSlider.css";
 
-// Components
-import FriendPreview from "../FriendPreview/FriendPreview";
-
-const FriendSlider = ({ userId }) => {
+const FriendSlider = ({ profileId }) => {
     const[loading, setLoadingState] = useState(true);
-    const[friends, setFriends] = useState();
+    const[friends, setFriends] = useState([]);
 
     const axiosConfig = {
-        headers: { 
-            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
-            'Refresh_Token': localStorage.getItem('refreshToken')
-        }
-    };
+        params: {
+            activeUserId: JSON.parse(localStorage.getItem('user'))._id
+        },
+    }
 
     useEffect(() => {
         // Get friends
-
-        // API function
-        const api = async () => {
-            try {
-                const response = await  axios.get(`/api/profile/${userId}/friends`, axiosConfig);
+        setLoadingState(true);
+        axios
+            .get(`/api/profile/${profileId}/friends`, axiosConfig)
+            .then(response => {
                 setFriends(response.data);
                 setLoadingState(false);
-            } catch (err) {
+            })
+            .catch(err => {
                 console.log(err);
-                setFriends([]);
-                setLoadingState(false);
-            }
-        }
-        // Call API function
-        api();
+            })
     }, [])
 
-    const test = () => {
-        const item = document.getElementById('scroll-menu');
-        item.addEventListener('wheel', (e) => {
+    const horizontalScroll = () => {
+        const element = document.getElementById('scroll-menu');
+        element.addEventListener('wheel', (e) => {
             // e.preventDefault();
-            if (e.deltaY > 0) item.scrollLeft += 100;
-            else item.scrollLeft -= 100;
-            // item.scrollLeft += e.deltaY + e.deltaX;
-          });
+            if (e.deltaY > 0) element.scrollLeft += 100;
+            else element.scrollLeft -= 100;
+          }); 
     }
 
     return (
         loading === true ? <Loading /> : 
-        <ul id="scroll-menu" onMouseEnter={test}>
+
+        <ul id="scroll-menu" onMouseEnter={horizontalScroll}>
             {friends.map(friend => {
-                        return (
-                            <li key={friend}>
-                                <FriendPreview userId={friend} />
-                            </li>
-                        );
-                    })}
-            </ul>
+                return (
+                    <li key={friend._id}>
+                            <UserInfo 
+                            userObj={friend}
+                            requestButton={true}
+                            imageSize="3rem"
+                            fontSize="1rem"
+                            gap=".5rem"
+                            orientation="column"
+                        />
+                    </li>
+                );
+            })}
+        </ul>
     )
 }
 

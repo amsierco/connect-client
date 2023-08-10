@@ -18,7 +18,7 @@ const Home = () => {
     useEffect(() => {
         // Get notifications from local storage
         setNotifications(JSON.parse(localStorage.getItem('user')).notifications);
-        console.log(JSON.parse(localStorage.getItem('user')).notifications)
+        // console.log(JSON.parse(localStorage.getItem('user')).notifications)
     }, [])
 
     return(

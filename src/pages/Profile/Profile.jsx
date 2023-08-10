@@ -66,6 +66,7 @@ const Profile = () => {
         axios
             .get(`/api/profile/${id}`, axiosConfig)
             .then ((response) => {
+                console.log('profile data');console.log(response.data);
                 setUser(response.data.user);
                 setFriend(response.data.isFriend);
                 setOwner(response.data.isOwner);
@@ -113,13 +114,14 @@ const Profile = () => {
                             <button type="submit" form="description">Confirm</button> 
                         : null}
                         </>
-                    : !isFriend ? 
+                    :null}
+                    {/* : !isFriend ? 
                         <FriendRequestBtn userId={user._id}/>
-                    :   <FriendRequestBtn userId={user._id} unfriend={true}/>}
+                    :   <FriendRequestBtn userId={user._id} unfriend={true}/>} */}
                 </div>
             </div>
             <div className="friend-slider">
-                <FriendSlider userId={user._id}/>
+                <FriendSlider profileId={user._id}/>
             </div>
             <div className="all-posts-wrapper">
                 All Posts

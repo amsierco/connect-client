@@ -38,7 +38,6 @@ const Timeline = () => {
         <React.Fragment>
             <div className="timeline-container">
                 <ul className="timeline-wrapper">
-                    <div>Timeline</div>
                     {timeline.map(post => {
                         return (
                             <li key={post._id}>

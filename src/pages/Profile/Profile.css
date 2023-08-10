@@ -60,6 +60,7 @@
             display: flex;
             align-items: center;
             gap: .5rem;
+            
             > button {
                 background-color: var(--light-orange);
                 padding: .5rem;

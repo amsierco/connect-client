@@ -1,0 +1,12 @@
+.suggested-user-wrapper{
+    padding: 1rem;
+    width: fit-content;
+
+    > li {
+        margin-top: .75rem;
+    }
+
+    >li:first-child {
+        margin-top: 0;
+    }
+}

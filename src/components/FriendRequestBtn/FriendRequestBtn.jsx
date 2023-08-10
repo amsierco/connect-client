@@ -3,9 +3,8 @@ import React, { useState, useEffect } from "react";
 // Utils
 import axios from "../../utils/AxiosConfig";
 
-const FriendRequestBtn = ({ userId, unfriend=false }) => {
-    const [isFriend, setFriend] = useState(unfriend);
-
+const FriendRequestBtn = ({ userObj }) => {
+    const [status, setStatus] = useState();  
 
     const axiosConfig = {
         headers: { 
@@ -15,16 +14,37 @@ const FriendRequestBtn = ({ userId, unfriend=false }) => {
     };
 
     const handleClick = async() => {
-        await axios.post(`/api/friend/${userId}/request`, {}, axiosConfig)
-        setFriend(!isFriend);
-    }
+        // No action if pending
+        if(status === 'pending'){
+            return
+        }
 
+        // Add or Remove friend (not async)
+        axios.post(`/api/friend/${userObj._id}/request`, {}, axiosConfig)
+
+        // Update status
+        if(status === 'add'){
+            setStatus('pending');
+        } else if (status === 'remove'){
+            setStatus('add');
+        }
+    }
+    
     useEffect(() => {
-    }, [isFriend])
+        // Set init state
+        setStatus(userObj.status);
+    }, [])
 
     return (
-        <button onClick={handleClick}>
-            {isFriend ? 'Unfriend' : 'Add Friend'}
+        status === 'current' ? null :
+
+        <button onClick={handleClick} >
+            {status === 'add' ? 'Add'
+            :
+            status === 'pending' ? 'Pending' 
+            : 
+            status === 'remove' ? 'Remove'
+            : null}
         </button>
     )
 }

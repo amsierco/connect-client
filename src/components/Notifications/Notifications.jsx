@@ -37,9 +37,10 @@ const Notifications = () => {
                 <ul>
                     {notifications.map((notif) => {
                         return (
-                            <li key={notif.sender}>
+                            <li key={notif._id}>
                                 <UserInfo 
                                     userObj={notif.sender}
+                                    requestButton={false}
                                     imageSize="3rem"
                                     fontSize="1rem"
                                     gap=".5rem"

@@ -36,6 +36,7 @@ const Comment = ({ commentId }) => {
         <div className="comment-wrapper-local">
             <UserInfo 
                 userObj={comment?.user_id}
+                requestButton={false}
                 imageSize="2rem"
                 fontSize="1rem"
                 gap=".5rem"
