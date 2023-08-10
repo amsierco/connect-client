@@ -14,6 +14,7 @@ const SuggestedUsers = () => {
 
     const [loading, setLoadingState] = useState(true);
     const [users, setUsers] = useState([]);
+    const [activeUser, setActiveUser] = useState();
 
     const axiosConfig = {
         params: {
@@ -35,6 +36,11 @@ const SuggestedUsers = () => {
                 console.log(err);
             }
         }
+
+        const tempUser = JSON.parse(localStorage.getItem('user'));
+        tempUser.status = 'current';
+        setActiveUser(tempUser);
+
         // Call API function
         getUsers();
 
@@ -44,6 +50,14 @@ const SuggestedUsers = () => {
         loading === true ? <Loading /> : 
 
         <ul className="suggested-user-wrapper">
+            <li id='active-user-li'>
+                <UserInfo 
+                    userObj={activeUser}
+                    requestButton={false}
+                    imageSize="3rem"
+                    fontSize="1rem"
+                />
+            </li>
             {users.map(userInstance => {
                 return (
                     <li key={userInstance._id}>
@@ -51,8 +65,6 @@ const SuggestedUsers = () => {
                             userObj={userInstance}
                             imageSize="3rem"
                             fontSize="1rem"
-                            gap=".5rem"
-                            orientation="row"
                         />
                     </li>
                 );

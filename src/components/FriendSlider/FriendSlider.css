@@ -9,6 +9,7 @@
     width: 100%;
     overflow-x: auto;
     overflow-y: none;
+    padding: 1rem;
     /* scroll-behavior: smooth; */
 
     background-color: var(--medium-gray);

@@ -20,7 +20,7 @@ const UserInfo = ({
     return (
         <div className="user-info" style={{
             // gap: `${gap}`,
-            flexDirection: `${orientation}`
+            flexDirection: `${orientation}`,
         }}>
             {undefined !== userObj.picture ? 
                 <Link 

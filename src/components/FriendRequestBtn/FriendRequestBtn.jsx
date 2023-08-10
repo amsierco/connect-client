@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 // Utils
 import axios from "../../utils/AxiosConfig";
 
+/**
+ * @param {userObj} containing fields: _id, username, picture, status
+ */
 const FriendRequestBtn = ({ userObj }) => {
     const [status, setStatus] = useState();  
 
@@ -38,7 +41,7 @@ const FriendRequestBtn = ({ userObj }) => {
     return (
         status === 'current' ? null :
 
-        <button onClick={handleClick} >
+        <button onClick={handleClick}>
             {status === 'add' ? 'Add'
             :
             status === 'pending' ? 'Pending' 

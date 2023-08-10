@@ -17,11 +17,7 @@ const Profile = () => {
     const[loading, setLoadingState] = useState(true);
 
     const[user, setUser] = useState();
-    const[isFriend, setFriend] = useState(false);
-    const[isOwner, setOwner] = useState(false);
-    const[posts, setPosts] = useState([]);
     const[isEditing, setEditing] = useState(false);
-
     const[description, setDescription] = useState();
     const[descriptionPlaceholder, setDescriptionPlaceholder] = useState();
 
@@ -66,12 +62,8 @@ const Profile = () => {
         axios
             .get(`/api/profile/${id}`, axiosConfig)
             .then ((response) => {
-                console.log('profile data');console.log(response.data);
-                setUser(response.data.user);
-                setFriend(response.data.isFriend);
-                setOwner(response.data.isOwner);
-                setPosts(response.data.user.posts);
-                setDescription(response.data.user?.description);
+                setUser(response.data);
+                setDescription(response.data?.description);
                 setLoadingState(false);
             });
     }, [id, description])
@@ -100,13 +92,15 @@ const Profile = () => {
                             </div>
                         :
                             <form action="" id="description" onSubmit={handleSubmit}>
-                                <input type="text" placeholder={description} onChange={e => setDescriptionPlaceholder(e.target.value)}/>
+                                <input type="text" placeholder={description} 
+                                onChange={e => setDescriptionPlaceholder(e.target.value)}
+                                />
                             </form>}
                          
                     </div>
                 </div>
                 <div className="actions">
-                    {isOwner ?
+                    {user.isOwner ?
                         <>
                         <button id="edit-btn" onClick={handleEdit}>{isEditing ? 'Cancel' : 'Edit'}</button>
                         {
@@ -114,10 +108,7 @@ const Profile = () => {
                             <button type="submit" form="description">Confirm</button> 
                         : null}
                         </>
-                    :null}
-                    {/* : !isFriend ? 
-                        <FriendRequestBtn userId={user._id}/>
-                    :   <FriendRequestBtn userId={user._id} unfriend={true}/>} */}
+                    : <FriendRequestBtn userObj={user} id='AAWG' />}
                 </div>
             </div>
             <div className="friend-slider">
@@ -126,7 +117,7 @@ const Profile = () => {
             <div className="all-posts-wrapper">
                 All Posts
                 <div className="all-posts">
-                    {posts.map(postInstance => {
+                    {user.posts.map(postInstance => {
                         return (
                             <div key={postInstance._id}>
                                 <PostPreview post={postInstance}/>
