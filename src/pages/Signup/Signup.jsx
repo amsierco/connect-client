@@ -13,6 +13,7 @@ const Signup = ({ setToken }) => {
     const [username, setUsername] = useState();
     const [email, setEmail ] = useState();
     const [password, setPassword] = useState();
+    const [error, setError] = useState(null);
 
     const navigate = useNavigate();
 
@@ -36,7 +37,7 @@ const Signup = ({ setToken }) => {
             return navigate('/');
 
         } catch (err) {
-            console.log(err);
+            setError(`${err.response.status} Error: ${err.response.data}`);
         }
     }
 
@@ -51,6 +52,7 @@ const Signup = ({ setToken }) => {
                 {/* Signup Form */}
                 <form onSubmit={handleSubmit}>
                     <h3>Create an Account!</h3>
+                    {null === error ? null : <div className="error">{error}</div>}
                     <div className='input-style-wrapper'>
                         <div id='label'>Email</div>
                         <div id='input-inner'>

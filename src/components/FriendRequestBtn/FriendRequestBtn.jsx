@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Utils
 import axios from "../../utils/AxiosConfig";
@@ -7,6 +8,7 @@ import axios from "../../utils/AxiosConfig";
  * @param {userObj} containing fields: _id, username, picture, status
  */
 const FriendRequestBtn = ({ userObj }) => {
+    const navigate = useNavigate();
     const [status, setStatus] = useState();  
 
     const axiosConfig = {
@@ -22,6 +24,11 @@ const FriendRequestBtn = ({ userObj }) => {
             return
         }
 
+        if(status === 'incoming'){
+            navigate('/notifications');
+            return;
+        }
+
         // Add or Remove friend (not async)
         axios.post(`/api/friend/${userObj._id}/request`, {}, axiosConfig)
 
@@ -35,6 +42,7 @@ const FriendRequestBtn = ({ userObj }) => {
     
     useEffect(() => {
         // Set init state
+        console.log(userObj.status)
         setStatus(userObj.status);
     }, [])
 
@@ -47,6 +55,8 @@ const FriendRequestBtn = ({ userObj }) => {
             status === 'pending' ? 'Pending' 
             : 
             status === 'remove' ? 'Remove'
+            : 
+            status ==='incoming' ? 'Incoming'
             : null}
         </button>
     )

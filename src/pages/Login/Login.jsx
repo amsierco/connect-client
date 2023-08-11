@@ -12,6 +12,7 @@ import './Login.css';
 const Login = () => {
     const [username_email, setUsernameEmail] = useState();
     const [password, setPassword] = useState();
+    const [error, setError] = useState(null);
 
     const navigate = useNavigate();
 
@@ -32,11 +33,10 @@ const Login = () => {
             localStorage.setItem('refreshToken', response.data.refreshToken);
 
             // Redirect to homepage
-            // console.log('navigating to home')
             return navigate('/');
 
         } catch (err) {
-            console.log(err);
+            setError(`${err.response.status} Error: Invalid credentials`);
         }
     }
 
@@ -51,6 +51,7 @@ const Login = () => {
                 {/* Login Form */}
                 <form onSubmit={handleSubmit}>
                     <h3>Welcome Back!</h3>
+                    {null === error ? null : <div className="error">{error}</div>}
                     <div className='input-style-wrapper'>
                         <div id='label'>Username or Email</div>
                         <div id='input-inner'>

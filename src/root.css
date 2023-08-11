@@ -92,3 +92,10 @@ form {
     background-position-x: 2px;
     background-color: var(--medium-gray);
 }
+
+.error {
+    color: red;
+    background-color: rgba(255, 0, 0, .2);
+    border-radius: .5rem;
+    padding: .5rem;
+}
