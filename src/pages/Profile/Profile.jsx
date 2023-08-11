@@ -118,20 +118,26 @@ const Profile = () => {
                     {/* </div> */}
                 </div>
             </div>
+            <div className="profile-subheader">
+                <h3>Friends</h3>
+            </div>
             <div className="friend-slider">
                 <FriendSlider profileId={user._id}/>
             </div>
+            <div className="profile-subheader">
+                <h3>All Posts</h3>
+            </div>
             <div className="all-posts-wrapper">
-                <div className="all-posts">
-                    {user.posts.map(postInstance => {
-                        console.log(postInstance);
-                        return (
-                            // <div key={postInstance._id}>
+                {user.posts.length === 0 ? 
+                    <div>No current posts</div> 
+                :
+                    <div className="all-posts">
+                        {user.posts.map(postInstance => {
+                            return (
                                 <PostPreview post={postInstance} key={postInstance._id}/>
-                            // </div>
-                        );
-                    })}
-                </div>
+                            );
+                        })}
+                    </div>}
             </div>
         </div>
     )

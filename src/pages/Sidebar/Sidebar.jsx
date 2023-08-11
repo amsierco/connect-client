@@ -44,12 +44,14 @@ const Sidebar = () => {
         <div className="sidebar-wrapper">
             <ul>
                 <li>
-                    <h1>
-                        <div id='logo-text'>Connect</div>
-                        <div id="logo-icon">
-                            <FontAwesomeIcon icon={tempLogo} /> 
-                        </div>
-                    </h1>
+                    <Link to='/' onClick={() => setPage('/')}>
+                        <h1>
+                            <div id='logo-text'>Connect</div>
+                            <div id="logo-icon">
+                                <FontAwesomeIcon icon={tempLogo} /> 
+                            </div>
+                        </h1>
+                    </Link>
                 </li>
                 <li id={page === '/' ? 'active-nav' : null}>
                     <Link to='/' onClick={() => setPage('/')}>
@@ -57,7 +59,7 @@ const Sidebar = () => {
                         <div>Home</div>
                     </Link>
                 </li>
-                <li id={page === '/search' ? 'active-nav' : null}>
+                {/* <li id={page === '/search' ? 'active-nav' : null}>
                     <Link to='/search' onClick={() => setPage('/search')}>
                         <FontAwesomeIcon icon={searchSolid} /> 
                         <div>Search</div>
@@ -68,7 +70,7 @@ const Sidebar = () => {
                         <FontAwesomeIcon icon={friendSolid} /> 
                         <div>Friends</div>
                     </Link>
-                </li>
+                </li> */}
                 <li id={page === '/notifications' ? 'active-nav' : null}>
                     <Link to='/notifications' onClick={() => setPage('/notifications')}>
                         <FontAwesomeIcon icon={bellSolid} /> 

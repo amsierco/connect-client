@@ -16,17 +16,19 @@ body,
     /* Palette */
     --light-gray: #EFEFEF;
     --medium-gray: #d7d7d7;
-    --dark-gray: #333333;
+    --medium-gray: #c1c1c1;
+    /* --dark-gray: #333333; */
+    --dark-gray: #404040;
     --light-orange: #FF5F1F;
     --text-dark: #000000;
     --text-light: #FFFFFF;
 
-    --post-background: var(--dark-gray);
-    --comment-background: var(--medium-gray);
+    --post-background: var(--medium-gray);
+    --comment-background: var(--light-gray);
     --icon-post-size: 5rem;
 
     color: var(--dark-gray);
-    background-color: var(--light-gray);
+    background-color: #FFFFFF;
 
     width: 100vw;
     height: 100vh;
@@ -35,7 +37,7 @@ body,
 #root > * {
     width: 100%;
     height: 100%;
-    background-color: var(--light-gray);
+    background-color: #FFFFFF;
 }
 
 a {

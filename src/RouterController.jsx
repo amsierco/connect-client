@@ -38,11 +38,11 @@ const RouterController = () => {
           {/* PROFILE */}
           <Route path='profile/:id' element={ <Profile /> } />
           {/* FRIENDS */}
-          <Route path='friends' element={ <Friends /> } />
+          {/* <Route path='friends' element={ <Friends /> } /> */}
           {/* NOTIFICATIONS */}
           <Route path='notifications' element={ <Notifications /> } />
           {/* SEARCH */}
-          <Route path='search' element={ <Search /> } />
+          {/* <Route path='search' element={ <Search /> } /> */}
         </Route>
 
         {/* 404 PAGE */}

@@ -2,8 +2,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: var(--dark-gray);
-    color: var(--text-light);
+    background-color: var(--light-gray);
+    color: var(--text-dark);
     height: fit-content;
     border-radius: .75rem;
     width: 100%;
@@ -17,19 +17,15 @@
     }
 }
 
-.profile-post-wrapper:hover {
-
-    & .profile-post-content {
-        filter: brightness(50%);
-    }
-
-    & .profile-post-stats {
-        display: flex;
-    }
+.profile-post-wrapper:hover .profile-post-stats{
+    display: flex;
 }
 
 .profile-post-stats{
     display: none;
+    border-radius: .75rem;
+    background-color: rgba(100,100,100,.5);
+    color: #FFFFFF;
     position: absolute;
     align-items: center;
     justify-content: center;

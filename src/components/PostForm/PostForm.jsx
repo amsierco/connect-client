@@ -49,9 +49,7 @@ const PostForm = () => {
                             <input type="text" onChange={e => setMessage(e.target.value)}/>
                         </div>
                     </div>
-                    <br />
                     <button className='button-wrapper' type="submit"> Create </button>
-                    
                 </form>
             </div>
         </div>

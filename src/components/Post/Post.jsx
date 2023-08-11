@@ -14,7 +14,8 @@ import {
 import { 
     faHeart as heart_outline, 
     faComment as comment_outline, 
-    faPaperPlane 
+    faPaperPlane,
+    faTrashCan as trash_outline 
 } from '@fortawesome/free-regular-svg-icons';
 
 // Components
@@ -58,6 +59,11 @@ const Post = ({ post }) => {
         console.log('POST SHARE NOT IMPLEMENTED')
     }
 
+    // Handle delete
+    const handleDelete = async() => {
+        await axios.post(`/api/posts/${post._id}/delete`, {}, axiosConfig);
+    }
+
     // Comment submit
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -68,8 +74,6 @@ const Post = ({ post }) => {
                 { message },
                 axiosConfig
             );
-
-            console.log('comment added');
 
             const _comments = comments;
             _comments.push(response.data);
@@ -106,7 +110,6 @@ const Post = ({ post }) => {
 
         // Call API functions
         getLikeStatus();
-
     }, []);
 
     return(
@@ -123,6 +126,9 @@ const Post = ({ post }) => {
                 <h3>{post.user_id.username}</h3>
                 <div id='small-circle'></div>
                 <h4>{date}</h4>
+                {post.user_id._id === JSON.parse(localStorage.getItem('user'))._id ? 
+                     <button><FontAwesomeIcon icon={trash_outline} onClick={handleDelete}/></button>
+                : null}
             </div>
             {/* Post post */}
             <div className="post-content">

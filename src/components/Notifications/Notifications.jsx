@@ -33,6 +33,7 @@ const Notifications = () => {
 
     return (
         <div className="notifications-container">
+            <h1>Notifications</h1>
             {notifications.length !== 0 ?
                 <ul>
                     {notifications.map((notif) => {

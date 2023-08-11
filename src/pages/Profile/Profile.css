@@ -30,7 +30,7 @@
         grid-template-columns: 3fr 1fr;
         padding-left: 1rem;
         width: 100%;
-        background-color: var(--light-gray);
+        background-color: #FFFFFF;
         border-top-left-radius: 7rem;
         border-top-right-radius: 7rem;
 
@@ -111,7 +111,7 @@
     aspect-ratio: 1/1;
     top: 0;
     left: 0;
-    background-color: var(--light-gray);
+    background-color: #FFFFFF;
     z-index: -1;
 }
 
@@ -120,3 +120,11 @@
     width: 10rem;
 }
 
+.profile-subheader{
+    display: flex;
+    justify-content: center;
+
+    & h3 {
+        border-bottom: 2px solid var(--dark-gray);
+    }
+}

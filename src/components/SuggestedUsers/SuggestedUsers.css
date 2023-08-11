@@ -1,5 +1,4 @@
 .suggested-user-wrapper{
-    padding: 0;
     width: fit-content;
 }
 
@@ -13,5 +12,5 @@
 
 #active-user {
     padding-bottom: 5px;
-    border-bottom: 1px solid var(--dark-gray);
+    border-bottom: 2px solid var(--dark-gray);
 }

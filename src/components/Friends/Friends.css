@@ -1,0 +1,16 @@
+.friends-container {
+    padding: 1rem;
+
+    > ul {
+        background-color: var(--medium-gray);
+        border-radius: .5rem;
+        width: fit-content;
+    }
+
+    & li {
+        display: flex;
+        width: 15rem;
+        margin-bottom: 1rem;
+        padding: 1rem;
+    }
+}

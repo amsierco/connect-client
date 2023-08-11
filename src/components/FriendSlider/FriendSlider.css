@@ -10,7 +10,7 @@
     overflow-x: auto;
     overflow-y: none;
     padding: 1rem;
-    background-color: var(--medium-gray);
+    background-color: var(--light-gray);
     border-radius: 1rem;
     /* Matches width of profile posts */
     width: 84rem;
