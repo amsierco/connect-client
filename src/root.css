@@ -18,8 +18,12 @@ body,
     --medium-gray: #d7d7d7;
     --dark-gray: #333333;
     --light-orange: #FF5F1F;
-    --text-dark: #29210A;
-    --text-light: #EFEFEF;
+    --text-dark: #000000;
+    --text-light: #FFFFFF;
+
+    --post-background: var(--dark-gray);
+    --comment-background: var(--medium-gray);
+    --icon-post-size: 5rem;
 
     color: var(--dark-gray);
     background-color: var(--light-gray);
@@ -31,6 +35,7 @@ body,
 #root > * {
     width: 100%;
     height: 100%;
+    background-color: var(--light-gray);
 }
 
 a {
@@ -41,6 +46,7 @@ a {
 input {
     all: unset;
     box-sizing: border-box;
+    width: 100%;
 }
 
 ul {
@@ -58,4 +64,29 @@ button {
 button:hover {
     cursor: pointer;
     transform: translateY(1px);
+}
+
+form {
+    display: flex;
+    padding: 1rem;
+}
+
+
+/* Classes */
+.z-index-wrapper {
+    position: relative;
+    z-index: 0;
+}
+
+.user-picture {
+    /* border: 1px solid var(--light-orange); */
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.guest-picture {
+    background-position-x: 2px;
+    background-color: var(--medium-gray);
 }

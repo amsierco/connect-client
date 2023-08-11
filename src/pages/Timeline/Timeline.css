@@ -3,10 +3,7 @@
     grid-template-columns: 3fr 1fr;
     overflow-x: none;
     overflow-y: auto;
-
-    > * {
-        margin-top: .5rem;
-    }
+    padding-top: 1rem;
 }
 
 .timeline-wrapper {

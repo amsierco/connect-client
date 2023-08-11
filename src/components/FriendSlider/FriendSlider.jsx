@@ -45,23 +45,24 @@ const FriendSlider = ({ profileId }) => {
 
     return (
         loading === true ? <Loading /> : 
-
-        <ul id="scroll-menu" onMouseEnter={horizontalScroll}>
-            {friends.map(friend => {
-                return (
-                    <li key={friend._id}>
-                            <UserInfo 
-                            userObj={friend}
-                            requestButton={true}
-                            imageSize="3rem"
-                            fontSize="1rem"
-                            gap=".5rem"
-                            orientation="column"
-                        />
-                    </li>
-                );
-            })}
-        </ul>
+        <div className="scroll-menu-wrapper">
+            <ul id="scroll-menu" onMouseEnter={horizontalScroll}>
+                {friends.map(friend => {
+                    return (
+                        <li key={friend._id}>
+                                <UserInfo 
+                                userObj={friend}
+                                requestButton={true}
+                                imageSize="3rem"
+                                fontSize="1rem"
+                                gap=".5rem"
+                                orientation="column"
+                            />
+                        </li>
+                    );
+                })}
+            </ul>
+        </div>
     )
 }
 

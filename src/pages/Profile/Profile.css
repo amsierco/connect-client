@@ -3,57 +3,62 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding: 2rem;
     overflow-x: none;
     overflow-y: auto;
+}
 
-   > .header {
+.all-posts-wrapper {
+    height: fit-content;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+
+    & .all-posts {
         display: grid;
-        grid-template-columns: 2fr 1fr;
-        /* border: 1px solid black; */
-        
-        > .info {
-            display: grid;
-            grid-template-columns: 1fr 5fr;
-            gap: 1rem;
+        grid-template-columns: repeat(4, 20rem);
+        gap: 1rem;
+    }
+}
 
-            > #icon-wrapper {
-                > #icon {
-                    width: 8rem;
-                    height: 8rem;
-                    border-radius: 100%;
-                    background: radial-gradient(circle, var(--light-gray) 65%, var(--light-orange) 5%);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    background-size: cover;
-                    background-position: center;
-        
-                    > img#guest {
-                        margin-left: 4px;
-                        width: 70%;
-                    }
-                }
+.header {
+    display: flex;
+
+    & .info {
+        position: relative;
+        z-index: initial;
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        padding-left: 1rem;
+        width: 100%;
+        background-color: var(--light-gray);
+        border-top-left-radius: 7rem;
+        border-top-right-radius: 7rem;
+
+        & #details {
+            font-size: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: calc(15rem * .75);
+            padding-left: 2rem;
+
+            > #username {
+                padding: 1rem;
+                padding-bottom: 0;
             }
 
-            > #details {
-                font-size: 2rem;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-
-                > #description {
-                    font-size: 1.25rem;
-                    padding: 1rem;
-                    margin-right: 1rem;
-                }
-
-                > form#description {
-                    border-radius: .5rem;
-                    border: 1px dashed var(--dark-gray);
-                }
-
+            > #description {
+                font-size: 1.25rem;
+                padding: 1rem;
+                /* Spacing for editing mode */
+                border: 1px solid transparent;
             }
+
+            > form#description {
+                border-radius: .5rem;
+                border: 1px dashed var(--dark-gray);
+            }
+
         }
 
         > .actions {
@@ -62,38 +67,56 @@
             gap: .5rem;
             
             > button {
-                background-color: var(--light-orange);
                 padding: .5rem;
                 padding-left: 1rem;
                 padding-right: 1rem;
-                font-size: 1rem;
-                border: none;
-                border-radius: .5rem;
-                border: 1px solid var(--dark-gray);
-            }
-        }
-   }
-
-    > .friend-slider {
-        /* border: 1px solid var(--dark-gray); */
-    }
-
-    > .all-posts-wrapper {
-        height: fit-content;
-        /* border: 1px solid black; */
-        padding: 1rem;
-
-        > .all-posts {
-            display: grid;
-            grid-template-columns: repeat(5, 10rem);
-            grid-template-rows: repeat(auto, 10rem);
-            gap: 1rem;
-
-            > div {
-                width: 100%;
-                height: 100%;
             }
         }
     }
+}
+
+#profile-background-spacer {
+    background-color: var(--dark-gray);
+    width: 100%;
+    height: 25px;
+}
+
+.profile-details-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+    top: 0;
+    left: 0;
+    background-color: var(--dark-gray);
+    z-index: -1;
+}
+
+.icon-wrapper {
+    position: relative;
+    z-index: initial;
+    background-color: var(--dark-gray);
+    width: 16rem;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-right-radius: 50%;
+    border-bottom-right-radius: 7rem;
+}
+
+.profile-icon-background {
+    position: absolute;
+    min-width: 100%;
+    aspect-ratio: 1/1;
+    top: 0;
+    left: 0;
+    background-color: var(--light-gray);
+    z-index: -1;
+}
+
+/* Profile picture */
+.icon-wrapper div{
+    width: 10rem;
 }
 

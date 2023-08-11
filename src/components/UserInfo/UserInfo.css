@@ -3,30 +3,12 @@
     align-items: center;
     gap: .5rem;
     font-size: .9rem;
-
-    #user-icon {
-        border: 1px solid var(--light-orange);
-        aspect-ratio: 1/1;
-        border-radius: 100%;
-        background-size: cover;
-        background-position: center;
-    }
-
-    #guest-picture {
-        border: 1px solid var(--light-orange);
-        aspect-ratio: 1/1;
-        border-radius: 100%;
-        background-size: contain;
-        background-position: center;
-        background-position-x: 2px;
-    }
-
-    > button {
-        font-size: .75rem;
-        margin-left: auto;
-    }
 }
 
+.user-info button {
+    font-size: .75rem;
+    margin-left: auto;
+}
 
 @media screen and (max-width: 1000px) {
     .user-info {

@@ -1,17 +1,17 @@
 .suggested-user-wrapper{
     padding: 0;
     width: fit-content;
-    
-    > li {
-        margin-top: .75rem;
-    }
-
-    >li:first-child {
-        margin-top: 0;
-    }
 }
 
-#active-user-li {
+.suggested-user-wrapper li {
+    margin-top: .75rem;
+}
+
+.suggested-user-wrapper li:first-child {
+    margin-top: 0;
+}
+
+#active-user {
     padding-bottom: 5px;
     border-bottom: 1px solid var(--dark-gray);
 }

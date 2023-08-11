@@ -1,21 +1,25 @@
-/*
-    React-Icons?
-*/
+.scroll-menu-wrapper {
+    display: flex;
+    justify-content: center;
+}
 
 #scroll-menu {
     display: flex;
-    gap: .5rem;
-    height: 100%;   
-    width: 100%;
+    gap: 1rem;
+    width: 25rem;
     overflow-x: auto;
     overflow-y: none;
     padding: 1rem;
+    background-color: var(--medium-gray);
+    border-radius: 1rem;
+    /* Matches width of profile posts */
+    width: 84rem;
+
     /* scroll-behavior: smooth; */
 
-    background-color: var(--medium-gray);
-
     > li {
-        /* border: 1px solid red;  */
+        padding-left: .5rem;
+        padding-right: .5rem;
     }
 }
 

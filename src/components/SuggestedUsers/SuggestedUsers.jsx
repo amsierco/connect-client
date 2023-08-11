@@ -50,7 +50,7 @@ const SuggestedUsers = () => {
         loading === true ? <Loading /> : 
 
         <ul className="suggested-user-wrapper">
-            <li id='active-user-li'>
+            <li id='active-user'>
                 <UserInfo 
                     userObj={activeUser}
                     requestButton={false}

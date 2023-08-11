@@ -3,7 +3,7 @@
     height: 100vh;
     display: flex;
     justify-content: center;
-    box-shadow: 1px 0 4px 0 var(--dark-gray);
+    /* box-shadow: 1px 0 4px 0 var(--dark-gray); */
     width: 250px;
 
     > ul {

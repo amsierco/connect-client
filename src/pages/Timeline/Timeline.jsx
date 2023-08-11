@@ -35,20 +35,19 @@ const Timeline = () => {
 
     return(
         loading === true ? <Loading /> : 
-        <React.Fragment>
-            <div className="timeline-container">
-                <ul className="timeline-wrapper">
-                    {timeline.map(post => {
-                        return (
-                            <li key={post._id}>
-                                <Post post={post}/>
-                            </li>
-                        );
-                    })}
-                </ul>
-                <SuggestedUsers />
-            </div>
-        </React.Fragment>
+
+        <div className="timeline-container">
+            <ul className="timeline-wrapper">
+                {timeline.map(post => {
+                    return (
+                        <li key={post._id}>
+                            <Post post={post}/>
+                        </li>
+                    );
+                })}
+            </ul>
+            <SuggestedUsers />
+        </div>
     )
 }
 

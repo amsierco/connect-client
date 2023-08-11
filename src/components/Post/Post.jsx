@@ -112,14 +112,12 @@ const Post = ({ post }) => {
     return(
     <div className="z-index-wrapper">
         <div className="post-wrapper">
-            {isCommentFormVisible || comments.length !== 0 ? <div className="post-wrapper-background"/> : null}
+            {isCommentFormVisible || comments.length !== 0 ? <div className="post-background timeline-background"/> : null}
             
             {/* Author icon */}
             {undefined !== post.user_id.picture ? 
-            <Link to={`/profile/${post.user_id._id}`} id='post-icon' style={{backgroundImage: `url(${post.user_id?.picture})`}}/> : 
-            <Link to={`/profile/${post.user_id._id}`} id='post-icon'>
-                <img src='../../guest-32.png' alt='' id="guest"/>
-            </Link>}
+            <Link to={`/profile/${post.user_id._id}`} className='user-picture post-picture' style={{backgroundImage: `url(${post.user_id?.picture})`}}/> : 
+            <Link to={`/profile/${post.user_id._id}`} className='user-picture guest-picture post-picture' style={{backgroundImage: `url(${'../../guest-32.png'})`}} />}
             {/* Username and Date */}
             <div className="post-header">
                 <h3>{post.user_id.username}</h3>
@@ -144,7 +142,7 @@ const Post = ({ post }) => {
         {/* Comments and Comment Form logic */}
         {isCommentFormVisible ? 
             <div className="comment-form">
-                <div className="comment-form-background"/>
+                <div className="comment-form-background timeline-background" />
                 <form onSubmit={handleSubmit}>
                     <input type="text" onChange={e => setCommentMessage(e.target.value)} placeholder="Add a comment..."/>
                     <button className='button-wrapper' type="submit">Comment</button>
@@ -153,23 +151,21 @@ const Post = ({ post }) => {
         : null}
 
         {comments.length !== 0 ? 
-            <div className={`${
-                isCommentFormVisible ? 
-                'comment-wrapper-with-form' :
-                'comment-wrapper'
-                }`}>
+                <ul className={`${
+                    isCommentFormVisible ? 
+                    'comment-wrapper comment-form-visible' :
+                    'comment-wrapper'
+                    }`}>
 
-                <ul>
                     {comments.map(user_comment => {
                         return (
-                            <li key={user_comment._id}>
-                                {isCommentFormVisible ? null : <div className="comment-form-background"/>}
+                            <li key={user_comment._id}> 
+                                {isCommentFormVisible ? null : <div className="comment-background timeline-background"/>}
                                 <Comment commentId={user_comment._id} />
                             </li>
                         );
                     })}
                 </ul>
-             </div>
         : null}
     </div>
     )

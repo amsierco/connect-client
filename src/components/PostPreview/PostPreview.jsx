@@ -15,19 +15,18 @@ const PostPreview = ({ post }) => {
     return(
         <div className="profile-post-wrapper">
             <div className="profile-post-content">
+                {post.message}
+            </div>
+            <div className="profile-post-stats">
                 <div>
-                    {
-                        post.message.length >= 70 ?
-                        post.message.substring(0, 70)+'...' :
-                        post.message
-                    }
+                    <FontAwesomeIcon icon={heart} />
+                    <div>{post.likes.count}</div>
+                </div>
+                <div>
+                    <FontAwesomeIcon icon={comment} />
+                    <div>{post.comments.length}</div>
                 </div>
             </div>
-            <div className="profile-post-footer">
-                <FontAwesomeIcon icon={heart} />
-                <div>{post.likes.count}</div>
-            </div>
-
         </div>
     )
 }

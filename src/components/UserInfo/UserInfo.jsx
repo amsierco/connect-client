@@ -11,21 +11,18 @@ const UserInfo = ({
     userObj, 
     requestButton = true,
     imageSize='2rem', 
-    fontSize='1rem', 
-    gap='.5rem',
     orientation='row'
 }) => {
     const guest_pic = '../../guest-32.png';
 
     return (
         <div className="user-info" style={{
-            // gap: `${gap}`,
             flexDirection: `${orientation}`,
         }}>
             {undefined !== userObj.picture ? 
                 <Link 
                     to={`/profile/${userObj._id}`} 
-                    id='user-icon' 
+                    className='user-picture' 
                     style={{
                         backgroundImage: `url(${userObj?.picture})`,
                         width: `${imageSize}`
@@ -34,7 +31,7 @@ const UserInfo = ({
             : 
                 <Link 
                     to={`/profile/${userObj._id}`} 
-                    id='guest-picture'
+                    className='user-picture guest-picture' 
                     style={{
                         backgroundImage: `url(${guest_pic})`,
                         width: `${imageSize}`

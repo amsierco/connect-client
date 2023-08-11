@@ -1,197 +1,131 @@
-/* 
-    COULD TRY A LINEAR GRADIENT
-*/
-
-.z-index-wrapper {
-    isolation: isolate;
-    position: relative;
-    z-index: 0;
-    --post-background: var(--dark-gray);
-    --comment-background: var(--medium-gray);
-    --icon-post-size: 5rem;
-}
-
 .post-wrapper {
-
     z-index: initial;
-
     overflow: visible;
     position: relative;
     background-color: var(--post-background);
     color: var(--text-light);
-    max-height: 30rem;
     height: fit-content;
-
     border-bottom-right-radius: 3rem;
     padding-bottom: .5rem;
+}
 
-    > .post-wrapper-background {
-        z-index: -1;
-        position: absolute;
-        background-color: var(--comment-background);
-        width: 100%;
-        height: 100%;
-    }
+.post-header {
+    display: flex;
+    gap: 1rem;
+    padding-left: var(--icon-post-size);
+    height: calc(var(--icon-post-size) *.65);
+    align-items: center;
 
-
-    > #post-icon {
-        position: absolute;
-        z-index: 1;
-        width: var(--icon-post-size);
-        aspect-ratio: 1/1;
+    & #small-circle {
+        width: 5px;
+        height: 5px;
         border-radius: 100%;
-        background: radial-gradient(circle, var(--light-gray) 65%, var(--light-orange) 5%);
-        border: 3px solid var(--comment-background);
-        top: 0;
-        left: 0;
-        transform: translate(-25%, -25%);
+        background-color: var(--text-light);
+    }
+}
 
+.post-content {
+    width: 100%;
+    height: fit-content;
+    padding: 1rem;
+}
+
+.post-footer {
+    padding: 1rem;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+}
+
+.post-footer-icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    max-height: 2rem;
+    height: 2rem;
+    margin-bottom: 2px;
+
+    & button {
+        color: var(--text-light);
+        background: transparent;
+        border: none;
         display: flex;
-        justify-content: center;
         align-items: center;
+        gap: 5px;
+        
+        & svg {
+            width: 25px;
+            height: 25px;
+        }
 
-        background-size: contain;
-        background-position: center;
-
-        > img#guest {
-            margin-left: 5px;
-            width: 70%;
+        &:hover {
+            cursor: pointer;
         }
     }
+}
 
-    > .post-header {
-        display: flex;
-        gap: 1rem;
-        padding-left: var(--icon-post-size);
-        height: calc(var(--icon-post-size) *.65);
-        align-items: center;
-
-        > #small-circle {
-            width: 5px;
-            height: 5px;
-            border-radius: 100%;
-            background-color: var(--text-light);
-        }
-    }
-
-    > .post-content {
-        width: 100%;
-        height: fit-content;
-        padding: 1rem;
-    }
-
-    > .post-footer {
-        padding: 1rem;
-        padding-top: .25rem;
-        padding-bottom: .25rem;
-
-        > .post-footer-icons {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 1rem;
-            max-height: 2rem;
-            height: 2rem;
-            margin-bottom: 2px;
-
-            > button {
-                color: var(--text-light);
-                background: transparent;
-                border: none;
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                
-                > svg {
-                    width: 25px;
-                    height: 25px;
-                }
-
-                &:hover {
-                    cursor: pointer;
-                }
-            }
-        }
-    }
+/* Override user-picture */
+.user-picture.post-picture {
+    position: absolute;
+    z-index: 1;
+    width: var(--icon-post-size);
+    border: 3px solid var(--light-gray);
+    transform: translate(-25%, -25%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .comment-form {
-    z-index: initial;
     position: relative;
+    z-index: initial;
     border-top-left-radius: 3rem;
     background-color: var(--comment-background);
-    
-    > .comment-form-background {
-        z-index: -1;
-        position: absolute;
-        background-color: var(--post-background);
-        width: 100%;
-        height: 100%;
+}
+
+.comment-form form {
+    gap: .5rem;
+    width: 100%;
+}
+
+/* Post & Comment backgrounds */
+.timeline-background {
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.post-background {
+    background-color: var(--comment-background);
+}
+
+.comment-form-background {
+    background-color: var(--post-background);
+}
+
+.comment-background {
+    background: linear-gradient(-45deg, transparent 50%, var(--post-background) 50%);
+    top: 0;
+    left: 0;
+}
+
+.comment-wrapper li {
+    background-color: var(--comment-background);
+    z-index: initial;
+    position: relative;
+    width: 100%; 
+   
+    &:first-child {
+        border-top-left-radius: 3rem;
     }
 
-    > form {
-        padding: 1rem;
-        display: flex;
-        gap: .5rem;
-        width: 100%;
-
-        > input {
-            width: 90%;
-        }
-
-        > button {
-            padding: .4rem;
-            border: 1px solid var(--dark-gray);
-            border-radius: .5rem;
-            background-color: var(--light-orange);
-        }
+    &:last-child {
+        border-bottom-right-radius: 3rem;
     }
 }
 
-
-.comment-wrapper-with-form {
-    > ul > li {
-        margin: 0;
-        background-color: var(--comment-background);
-        z-index: initial;
-        position: relative;
-        width: 100%;
-
-        &:first-child {
-            border-top-left-radius: 0;
-        }
-
-        &:last-child {
-            border-bottom-right-radius: 3rem;
-        }
-    }
-}
-
-.comment-wrapper {
-    > ul > li {
-        margin: 0;
-        background-color: var(--comment-background);
-        z-index: initial;
-        position: relative;
-        width: 100%;
-
-        &:first-child {
-            border-top-left-radius: 3rem;
-        }
-
-        &:last-child {
-            border-bottom-right-radius: 3rem;
-        }
-
-        > .comment-form-background {
-            z-index: -1;
-            position: absolute;
-            background: linear-gradient(-45deg, transparent 50%, var(--post-background) 50%);
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-        }
-    }
+.comment-form-visible li:first-child{
+    border-top-left-radius: 0;
 }
 
