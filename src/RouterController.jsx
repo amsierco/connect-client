@@ -5,13 +5,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import ErrorPage from './pages/ErrorPage';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
-import Home from './components/Home/Home';
-import PostForm from './components/PostForm/PostForm';
+import Home from './pages/Home/Home';
+import PostForm from './pages/PostForm/PostForm';
 import Timeline from "./pages/Timeline/Timeline";
 import Profile from './pages/Profile/Profile';
-import Friends from './components/Friends/Friends';
-import Notifications from './components/Notifications/Notifications';
-import Search from './components/Search/Search';
+import Notifications from './pages/Notifications/Notifications';
 
 // Utils
 import ProtectedRoute from './utils/ProtectedRoute';
@@ -37,12 +35,8 @@ const RouterController = () => {
           <Route path='post-form' element={ <PostForm /> } />
           {/* PROFILE */}
           <Route path='profile/:id' element={ <Profile /> } />
-          {/* FRIENDS */}
-          {/* <Route path='friends' element={ <Friends /> } /> */}
           {/* NOTIFICATIONS */}
           <Route path='notifications' element={ <Notifications /> } />
-          {/* SEARCH */}
-          {/* <Route path='search' element={ <Search /> } /> */}
         </Route>
 
         {/* 404 PAGE */}

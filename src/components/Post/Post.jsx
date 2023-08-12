@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 // Utils
 import axios from "../../utils/AxiosConfig";
+import ImageFormat from "../../utils/ImageFormat";
 
 // CSS
 import './Post.css';
@@ -92,7 +93,6 @@ const Post = ({ post }) => {
             try {
                 const like_status = await axios.get(`/api/posts/like/${post._id}`, axiosConfig);
                 setLiked(like_status.data);
-
             } catch (err) {
                 console.log(err);
             }
@@ -118,9 +118,12 @@ const Post = ({ post }) => {
             {isCommentFormVisible || comments.length !== 0 ? <div className="post-background timeline-background"/> : null}
             
             {/* Author icon */}
-            {undefined !== post.user_id.picture ? 
-            <Link to={`/profile/${post.user_id._id}`} className='user-picture post-picture' style={{backgroundImage: `url(${post.user_id?.picture})`}}/> : 
-            <Link to={`/profile/${post.user_id._id}`} className='user-picture guest-picture post-picture' style={{backgroundImage: `url(${'../../guest-32.png'})`}} />}
+            <Link 
+                to={`/profile/${post.user_id._id}`} 
+                className='user-picture post-picture' 
+                style={ImageFormat(post.user_id?.picture)}
+            /> 
+
             {/* Username and Date */}
             <div className="post-header">
                 <h3>{post.user_id.username}</h3>
@@ -132,6 +135,9 @@ const Post = ({ post }) => {
             </div>
             {/* Post post */}
             <div className="post-content">
+                {undefined !== post.image ?
+                    <div id='post-img' style={{backgroundImage: `url("data:image/png;base64, ${post.image}")`}}/>
+                : null }
                 <div>{post.message}</div>
             </div>
             {/* Footer with icons */}
@@ -139,7 +145,7 @@ const Post = ({ post }) => {
                 <div className="post-footer-icons">
                     <button><FontAwesomeIcon icon={isLiked ? heart_solid : heart_outline} onClick={handleLike}/></button>
                     <button><FontAwesomeIcon icon={isCommentFormVisible ? comment_solid : comment_outline} onClick={handleComment}/></button>
-                    <button><FontAwesomeIcon icon={faPaperPlane} onClick={handleShare}/></button>
+                    {/* <button><FontAwesomeIcon icon={faPaperPlane} onClick={handleShare}/></button> */}
                 </div>
                 <div id='like-counter'>{likeCount} {likeCount === 1 ? 'like' : 'likes'} </div>
             </div>

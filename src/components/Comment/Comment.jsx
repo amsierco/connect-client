@@ -41,7 +41,7 @@ const Comment = ({ commentId }) => {
                 fontSize="1rem"
                 gap=".5rem"
             />
-            <div>{comment?.message}</div>
+            <div id="comment-message">{comment?.message}</div>
         </div>
     )
 }

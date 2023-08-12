@@ -3,3 +3,7 @@
     gap: .75rem;
     align-items: flex-start;
 }
+
+#comment-message {
+    padding-top: 2px;
+}

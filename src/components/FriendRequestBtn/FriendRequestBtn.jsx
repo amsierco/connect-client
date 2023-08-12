@@ -42,7 +42,7 @@ const FriendRequestBtn = ({ userObj }) => {
     
     useEffect(() => {
         // Set init state
-        console.log(userObj.status)
+        // console.log(userObj.status)
         setStatus(userObj.status);
     }, [])
 

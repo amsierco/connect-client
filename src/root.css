@@ -81,17 +81,19 @@ form {
 }
 
 .user-picture {
-    /* border: 1px solid var(--light-orange); */
+    width: 2rem;
     aspect-ratio: 1/1;
     border-radius: 100%;
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
 }
 
-.guest-picture {
-    background-position-x: 2px;
+/* .guest-picture {
     background-color: var(--medium-gray);
-}
+    background-size: contain;
+    background-position-y: 3px;
+} */
 
 .error {
     color: red;

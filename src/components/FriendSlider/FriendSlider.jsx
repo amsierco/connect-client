@@ -56,9 +56,6 @@ const FriendSlider = ({ profileId }) => {
                                     <UserInfo 
                                     userObj={friend}
                                     requestButton={true}
-                                    imageSize="3rem"
-                                    fontSize="1rem"
-                                    gap=".5rem"
                                     orientation="column"
                                 />
                             </li>

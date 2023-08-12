@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 
 // Utils
 import axios from "../../utils/AxiosConfig";
-import UserInfo from "../UserInfo/UserInfo";
+import UserInfo from "../../components/UserInfo/UserInfo";
 
 // CSS
 import './Notifications.css';

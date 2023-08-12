@@ -50,15 +50,17 @@
             > #description {
                 font-size: 1.25rem;
                 padding: 1rem;
-                /* Spacing for editing mode */
-                border: 1px solid transparent;
             }
 
-            > form#description {
+            > form {
+                margin-top: 3rem;
                 border-radius: .5rem;
                 border: 1px dashed var(--dark-gray);
+                font-size: 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
             }
-
         }
 
         > .actions {

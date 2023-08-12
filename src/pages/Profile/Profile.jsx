@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 // Utils
 import axios from "../../utils/AxiosConfig";
 import Loading from "../../utils/Loading";
+import ImageFormat from "../../utils/ImageFormat";
 
 // Components
 import FriendSlider from "../../components/FriendSlider/FriendSlider";
@@ -41,14 +42,45 @@ const Profile = () => {
         e.preventDefault();
         
         try {
-            axios.post(
-                `/api/profile/${id}/edit`, 
-                { description: descriptionPlaceholder },
-                axiosConfig
-            )
-            setDescription(descriptionPlaceholder);
-            setEditing(false);
-
+            let file = document.querySelector('input[type=file]')['files'][0];
+            if(undefined !== file){
+                if(file.size > 2097152){
+                    alert("File is too big! Max upload size: 2MB");
+                    return;
+                }
+                let base64String = "";
+                const reader = new FileReader();
+                reader.onload = async() => {
+                    base64String = reader.result
+                        .replace("data:", "")
+                        .replace(/^.+,/, "");
+                    // console.log(base64String);
+    
+                    axios.post(
+                        `/api/profile/${id}/edit`, 
+                        { 
+                            description: descriptionPlaceholder, 
+                            base64String: base64String
+                        },
+                        axiosConfig
+                    )
+                    setDescription(descriptionPlaceholder);
+                    setEditing(false);
+                }
+                reader.readAsDataURL(file);
+            } else {
+                axios.post(
+                    `/api/profile/${id}/edit`, 
+                    { 
+                        description: descriptionPlaceholder
+                    },
+                    axiosConfig
+                )
+                setDescription(descriptionPlaceholder);
+                setEditing(false);
+            }
+            
+            
         } catch (err) {
             setEditing(false);
             console.log(err);
@@ -78,28 +110,31 @@ const Profile = () => {
                     {/* <div className="info"> */}
                         <div className="icon-wrapper">
                             <div className="profile-icon-background" />
-                            {
-                                undefined !== user.picture ? 
-                                    <div className="user-picture profile-picture" style={{backgroundImage: `url(${user.picture})`}} /> 
-                                : 
-                                    <div className="user-picture guest-picture profile-picture" style={{backgroundImage: `url(${'../../guest-32.png'})`}} /> 
-                            }
+                            <div 
+                                className="user-picture profile-picture" 
+                                style={ImageFormat(user.picture)} 
+                            />
                         </div>
                         <div className="info">
 
                         <div id='details'>
 
                             <div className="profile-details-background" />
-                            <h4 id='username'> {user.username} </h4>
                             {!isEditing ?
+                                <>
+                                <h4 id='username'> {user.username} </h4>
                                 <div id='description'>
                                     {description}
                                 </div>
+                                </>
                             :
-                                <form action="" id="description" onSubmit={handleSubmit}>
-                                    <input type="text" placeholder={description} 
+                                <form action="" id='form'onSubmit={handleSubmit}>
+                                    <label>Update description</label>
+                                    <input type="text" placeholder={description}
                                     onChange={e => setDescriptionPlaceholder(e.target.value)}
                                     />
+                                    <label htmlFor='profile-pic' id='profile-pic'>Update Profile Picture</label>
+                                    <input type="file" id='profile-pic' name='profile-pic'/>
                                 </form>}
                         </div> 
                         <div className="actions">
@@ -108,10 +143,10 @@ const Profile = () => {
                                 <button id="edit-btn" onClick={handleEdit}>{isEditing ? 'Cancel' : 'Edit'}</button>
                                 {
                                     isEditing ? 
-                                    <button type="submit" form="description">Confirm</button> 
+                                    <button type="submit" form="form">Confirm</button> 
                                 : null}
                                 </>
-                            : <FriendRequestBtn userObj={user} id='AAWG' />}
+                            : <FriendRequestBtn userObj={user}/>}
                         </div>
                             
                         </div>
