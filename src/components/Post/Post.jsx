@@ -22,7 +22,7 @@ import {
 // Components
 import Comment from "../Comment/Comment";
 
-const Post = ({ post }) => {
+const Post = ({ post, reloadPage }) => {
     const [isLiked, setLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(post.likes.count)
     const [date, setDate] = useState();
@@ -63,6 +63,7 @@ const Post = ({ post }) => {
     // Handle delete
     const handleDelete = async() => {
         await axios.post(`/api/posts/${post._id}/delete`, {}, axiosConfig);
+        reloadPage();
     }
 
     // Comment submit
@@ -88,6 +89,8 @@ const Post = ({ post }) => {
 
     // Load API data
     useEffect(() => {
+
+
         // Check like status
         const getLikeStatus = async () => {
             try {

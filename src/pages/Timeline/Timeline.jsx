@@ -13,25 +13,26 @@ import SuggestedUsers from "../../components/SuggestedUsers/SuggestedUsers";
 
 const Timeline = () => {
     const[loading, setLoadingState] = useState(true);
-    const [timeline, setTimeline] = useState([]);
+    const[timeline, setTimeline] = useState([]);
+    const[reload, initReload] = useState(false);
 
-    // Once on mount
+    const reloadPage = () => {
+        initReload(!reload);
+    }
+
     useEffect(() => {
         setLoadingState(true);
-        // API function
         const getTimeline = async () => {
             try {
                 const response = await axios.get('/api/posts');
                 setTimeline(response.data);
                 setLoadingState(false);
             } catch (err) {
-                console.log(err);
+                alert(err);
             }
         }
-        // Call API function
         getTimeline();
-
-    }, []);
+    }, [reload]);
 
     return(
         loading === true ? <Loading /> : 
@@ -41,7 +42,7 @@ const Timeline = () => {
                 {timeline.map(post => {
                     return (
                         <li key={post._id}>
-                            <Post post={post}/>
+                            <Post post={post} reloadPage={reloadPage}/>
                         </li>
                     );
                 })}
